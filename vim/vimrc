@@ -29,7 +29,11 @@ set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
-set relativenumber
+
+" relative number allows you to see a zero offset line distance
+"set relativenumber
+set number
+
 set laststatus=2
 set undofile
 
