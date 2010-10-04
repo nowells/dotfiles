@@ -1,3 +1,5 @@
+" ./configure --with-features=BIG --enable-pythoninterp --enable-rubyinterp --enable-enablemultibyte --enable-gui=no --with-x --enable-cscope --with-compiledby="Nowell Strite <nowell@strite.org>" --prefix=/usr
+
 filetype off
 call pathogen#runtime_append_all_bundles()
 filetype plugin indent on
@@ -140,7 +142,11 @@ function! MyFoldText()
 
     let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
     let fillcharcount = windowwidth - len(line) - len(foldedlinecount) - 4
-    return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    if has('gui_running')
+        return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
+    else
+        return line . '...' . repeat(" ",fillcharcount) . foldedlinecount . '...' . ' '
+    endif
 endfunction
 set foldtext=MyFoldText()
 
@@ -284,3 +290,6 @@ if has('gui_running')
 
     highlight SpellBad term=underline gui=undercurl guisp=Orange
 endif
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
