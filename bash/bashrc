@@ -28,6 +28,7 @@ export PS1="${NOWELLS_BASEPROMPT}
 $ "
 export PROMPT_COMMAND="~/.bashrc.d/prompt_command"
 
+export BASE_TERM=$TERM
 export TERM=xterm-color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1

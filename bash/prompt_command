@@ -14,24 +14,26 @@ if [[ -ne "$VIRTUAL_ENV" ]]; then
 fi
 
 
-# Setup prompt title name for screen session tab naming.
-PROMPT_TITLE='shell'
-if [[ -ne "$VIRTUAL_ENV" ]]; then
-    PROMPT_TITLE=`basename $VIRTUAL_ENV`
-else
-    DIR=$PWD
-    LASTDIR=""
-    until [[ $LASTDIR = $DIR ]]; do
-        if [ -f $DIR/.git/HEAD ]; then
-            PROMPT_TITLE=$(basename $DIR)
-            break
-        fi
-        if [ -f $DIR/.hg/branch ]; then
-            PROMPT_TITLE=$(basename $DIR)
-            break
-        fi
-        LASTDIR=$DIR
-        DIR=$(dirname $DIR)
-    done
+if [[ "$BASE_TERM" == "screen" ]]; then
+    # Setup prompt title name for screen session tab naming.
+    PROMPT_TITLE='shell'
+    if [[ -ne "$VIRTUAL_ENV" ]]; then
+        PROMPT_TITLE=`basename $VIRTUAL_ENV`
+    else
+        DIR=$PWD
+        LASTDIR=""
+        until [[ $LASTDIR = $DIR ]]; do
+            if [ -f $DIR/.git/HEAD ]; then
+                PROMPT_TITLE=$(basename $DIR)
+                break
+            fi
+            if [ -f $DIR/.hg/branch ]; then
+                PROMPT_TITLE=$(basename $DIR)
+                break
+            fi
+            LASTDIR=$DIR
+            DIR=$(dirname $DIR)
+        done
+    fi
+    echo -ne "\ek$PROMPT_TITLE\e\\"
 fi
-echo -ne "\ek$PROMPT_TITLE\e\\"
