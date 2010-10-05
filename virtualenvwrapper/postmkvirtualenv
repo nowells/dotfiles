@@ -1,4 +1,6 @@
 #!/bin/bash
 # This hook is run after a new virtualenv is activated.
 
-echo "cd $(pwd)" >> $VIRTUAL_ENV/bin/postactivate
+ln -s `pwd` $VIRTUAL_ENV/project_symlink
+
+echo "cd `readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`" >> $VIRTUAL_ENV/bin/postactivate

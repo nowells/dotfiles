@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Provide feedback if we are not currently working within the selected VIRTUAL_ENV
+if [[ -ne "$VIRTUAL_ENV" ]]; then
+    PROJECT_DIR="`readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`"
+    CURRENT_DIR="`pwd`"
+    if [[ -ne "$PROJECT_DIR" ]]; then
+        if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
+            printf "\n\e${NOWELLS_RED_COLOR}`basename $VIRTUAL_ENV`\e${NOWELLS_DEFAULT_COLOR} is currently active.\n"
+            printf "Please run \e${NOWELLS_GREEN_COLOR}deactivate\e${NOWELLS_DEFAULT_COLOR} or return to \e${NOWELLS_PINK_COLOR}$PROJECT_DIR\e${NOWELLS_DEFAULT_COLOR}\n"
+        fi
+    fi
+fi
