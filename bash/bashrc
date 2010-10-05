@@ -46,7 +46,13 @@ if [ `id -u` != '0' ]; then
   export PIP_RESPECT_VIRTUALENV=true
 fi
 
+# Aliases
 alias rvim="gvim --remote-silent"
+alias emacs='echo "You are trying to learn vi... type \`vi\` instead."'
+alias em="emacs"
+alias ll="ls -alh"
+
 shopt -s histappend
 
-. /usr/local/git/contrib/completion/git-completion.bash
+. ~/.bashrc.d/git-completion.bash
+. ~/.bashrc.d/git-flow-completion.bash

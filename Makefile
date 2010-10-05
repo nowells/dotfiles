@@ -7,12 +7,13 @@ install-vim:
 	ln -s ~/.vim/vimrc ~/.vimrc
 
 install-bash:
-	rm -f ~/.bashrc
-	ln -s `pwd`/bash/bashrc ~/.bashrc
-
+	rm -f ~/.bashrc ~/.bashrc.d
+	ln -sn `pwd`/bash/bashrc ~/.bashrc
+	ln -sn `pwd`/bash ~/.bashrc.d
+	
 install-virtualenvwrapper:
 	mkdir -p ~/.virtualenvs
-	ln -s `pwd`/virtualenvwrapper/* ~/.virtualenvs
+	ln -sf `pwd`/virtualenvwrapper/* ~/.virtualenvs
 
 dump-terminal-settings:
 	cp ~/Library/Preferences/com.apple.Terminal.plist terminal
