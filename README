@@ -1,0 +1,7 @@
+Install vcprompt: https://bitbucket.org/mitsuhiko/vcprompt
+
+If you want fancy colors in the Terminal, you will need the SIMBL
+plugin (http://www.culater.net/software/SIMBL/SIMBL.php) as well
+as the TerminalColors plugin.  I have a fork of it on github that
+is configured to compile for 32bit and 64bit and works for Snow
+Leopard (http://github.com/mitsuhiko/terminalcolours).
