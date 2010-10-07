@@ -129,8 +129,8 @@ map <leader>=  yypVr
 
 " Folding
 set foldlevelstart=0
-nnoremap <Space> za
-vnoremap <Space> za
+nnoremap <Space> zO
+vnoremap <Space> zO
 au BufNewFile,BufRead *.html map <leader>ft Vatzf
 
 function! MyFoldText()
@@ -297,3 +297,4 @@ endif
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\t/
+

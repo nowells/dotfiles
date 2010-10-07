@@ -56,5 +56,15 @@ alias ll="ls -alh"
 
 shopt -s histappend
 
+
+# Ruby RIP
+export RUBYLIB="$RUBYLIB:$HOME/Sites/rip/lib"
+export PATH="$PATH:$HOME/Sites/rip/bin"
+export RIPVERBOSE=1
+export RIPDIR=$HOME/.rip
+export RUBYLIB="/Users/nbstrite/.rip/active/lib:/active/lib::/Users/nbstrite/Sites/rip/lib"
+export PATH=$PATH:/Users/nbstrite/.rip/active/bin:/Users/nbstrite/Sites/rip/bin
+export MANPATH=$MANPATH:/Users/nbstrite/.rip/active/man
+
 . ~/.bashrc.d/git-completion.bash
 . ~/.bashrc.d/git-flow-completion.bash
