@@ -104,6 +104,7 @@ colorscheme molokai
 set pastetoggle=<F12>
 
 " NERD Tree
+map <leader>` :NERDTreeToggle<cr>
 map <F2> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', '^.git$']
 
