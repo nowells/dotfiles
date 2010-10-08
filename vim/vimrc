@@ -95,19 +95,15 @@ if has('gui_running')
    set listchars=tab:▸\ ,eol:¬
 endif
 
-syntax on
-set background=dark
+" Color Configuration
 set t_Co=256
-if (&t_Co == 256 || &t_Co == 88) && !has('gui_running') &&
-      \ filereadable(expand("$HOME/.vim/plugin/guicolorscheme.vim"))
-    " Use the guicolorscheme plugin to makes 256-color or 88-color
-    "   " terminal use GUI colors rather than cterm colors.
-    runtime! plugin/guicolorscheme.vim
-    GuiColorScheme blackboard
-else
-    " For 8-color 16-color terminals or for gvim, just use the
-    " regular :colorscheme command.
-    colorscheme blackboard
+if &t_Co >= 256 || has("gui_running")
+       colorscheme molokai
+endif
+if &t_Co > 2 || has("gui_running")
+    " switch syntax highlighting on, when the terminal has colors
+    set background=dark
+    syntax on
 endif
 
 " Hotkey for paste toggling
