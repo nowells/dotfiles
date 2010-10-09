@@ -17,7 +17,7 @@ set expandtab
 
 " Basic options
 set encoding=utf-8
-set scrolloff=3
+set scrolloff=999
 set autoindent
 set showmode
 set showcmd
@@ -30,8 +30,7 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 
-" relative number allows you to see a zero offset line distance
-"set relativenumber
+" Turn on line-numbers
 set number
 
 set laststatus=2
@@ -49,27 +48,26 @@ try
 catch
 endtry
 
+set pastetoggle=<F12>
+
 " Leader
 let mapleader = ","
 
-" Fast editing of the .vimrc
-map <leader>e :e! ~/.vimrc<cr>
 
-" Auto-reload .vimrc when changed
-autocmd! bufwritepost vimrc source ~/.vimrc
-
-" Pressing ,ss will toggle and untoggle spell checking
+""""""""""""""
+"" Spelling
+""""""""""""""
 map <leader>ss :setlocal spell!<cr>
 map <leader>sf :setlocal nospell!<cr>
-
-"Shortcuts using <leader>
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
 
-" Searching
+"""""""""""""
+"" Searching
+"""""""""""""
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase
@@ -83,7 +81,10 @@ runtime macros/matchit.vim
 nmap <tab> %
 vmap <tab> %
 
-" Soft/hard wrapping
+
+"""""""""""""
+"" Wrapping
+"""""""""""""
 set wrap
 set textwidth=79
 set formatoptions=qrn1
@@ -95,10 +96,13 @@ if has('gui_running')
    set listchars=tab:▸\ ,eol:¬
 endif
 
-" Color Configuration
-set t_Co=256
+
+""""""""""""""""""
+"" Syntax/Colors
+""""""""""""""""""
+colorscheme default
 if &t_Co >= 256 || has("gui_running")
-       colorscheme molokai
+   colorscheme molokai
 endif
 if &t_Co > 2 || has("gui_running")
     " switch syntax highlighting on, when the terminal has colors
@@ -106,10 +110,10 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
-" Hotkey for paste toggling
-set pastetoggle=<F12>
 
-" NERD Tree
+""""""""""""""
+"" NERD Tree
+""""""""""""""
 map <leader>` :NERDTreeToggle<cr>
 map <F2> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', '^.git$']
@@ -283,10 +287,6 @@ au FocusLost * :wa
 inoremap # X<BS>#
 
 if has('gui_running')
-    set guifont=Menlo:h12
-    colorscheme molokai
-    set background=dark
-
     set go-=T
     set go-=l
     set go-=L
