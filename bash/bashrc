@@ -1,70 +1,72 @@
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+if [[ -n "$PS1" ]] ; then
+    export EDITOR=vim
 
-export EDITOR=vim
+    export NOWELLS_DEFAULT_COLOR="[00m"
+    export NOWELLS_GRAY_COLOR="[37m"
+    export NOWELLS_PINK_COLOR="[35m"
+    export NOWELLS_GREEN_COLOR="[32m"
+    export NOWELLS_ORANGE_COLOR="[33m"
+    export NOWELLS_RED_COLOR="[31m"
+    if [ `id -u` == '0' ]; then
+      export NOWELLS_USER_COLOR=$NOWELLS_RED_COLOR
+    else
+      export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
+    fi
+    NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
 
-export NOWELLS_DEFAULT_COLOR="[00m"
-export NOWELLS_GRAY_COLOR="[37m"
-export NOWELLS_PINK_COLOR="[35m"
-export NOWELLS_GREEN_COLOR="[32m"
-export NOWELLS_ORANGE_COLOR="[33m"
-export NOWELLS_RED_COLOR="[31m"
-if [ `id -u` == '0' ]; then
-  export NOWELLS_USER_COLOR=$NOWELLS_RED_COLOR
-else
-  export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
-fi
-NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
+    nowells_vcprompt() {
+      $NOWELLS_VCPROMPT_EXECUTABLE -f $' on \033[34m%n\033[00m:\033[00m%[unknown]b\033[32m%m%u'
+    }
 
-nowells_vcprompt() {
-  $NOWELLS_VCPROMPT_EXECUTABLE -f $' on \033[34m%n\033[00m:\033[00m%[unknown]b\033[32m%m%u'
-}
-
-export NOWELLS_BASEPROMPT='\n\e${NOWELLS_USER_COLOR}\u \
+    export NOWELLS_BASEPROMPT='\n\e${NOWELLS_USER_COLOR}\u \
 \e${NOWELLS_GRAY_COLOR}at \e${NOWELLS_ORANGE_COLOR}\h \
 \e${NOWELLS_GRAY_COLOR}in \e${NOWELLS_GREEN_COLOR}\w\
 \e${NOWELLS_GRAY_COLOR}$(nowells_vcprompt)\e${NOWELLS_DEFAULT_COLOR}'
-export PS1="${NOWELLS_BASEPROMPT}
+    export PS1="${NOWELLS_BASEPROMPT}
 $ "
-export PROMPT_COMMAND="~/.bashrc.d/prompt_command"
+    export PROMPT_COMMAND="~/.bashrc.d/prompt_command"
 
-export BASE_TERM=$TERM
-# export TERM=xterm-color
-export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-export CLICOLOR=1
-export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
-export LC_CTYPE=en_US.utf-8
-export PATH=/usr/local/bin:$PATH
-export IGNOREEOF=1
-export PYTHONDONTWRITEBYTECODE=1
-export LESS=FRSX
+    export BASE_TERM=$TERM
+    # export TERM=xterm-color
+    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+    export CLICOLOR=1
+    export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
+    export LC_CTYPE=en_US.utf-8
+    export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+    export IGNOREEOF=1
+    export PYTHONDONTWRITEBYTECODE=1
+    export LESS=FRSX
 
-# virtualenvwrapper and pip
-if [ `id -u` != '0' ]; then
-  export VIRTUALENV_USE_DISTRIBUTE=1
-  export WORKON_HOME=$HOME/.virtualenvs
-  source /usr/local/bin/virtualenvwrapper.sh
-  export PIP_VIRTUALENV_BASE=$WORKON_HOME
-  export PIP_RESPECT_VIRTUALENV=true
+    # virtualenvwrapper and pip
+    if [ `id -u` != '0' ]; then
+      export VIRTUALENV_USE_DISTRIBUTE=1
+      export WORKON_HOME=$HOME/.virtualenvs
+      source /usr/local/bin/virtualenvwrapper.sh
+      export PIP_VIRTUALENV_BASE=$WORKON_HOME
+      export PIP_RESPECT_VIRTUALENV=true
+    fi
+
+    # Aliases
+    alias rvim="gvim --remote-silent"
+    alias emacs='echo "You are trying to learn vi... type \`vi\` instead."'
+    alias em="emacs"
+    alias ll="ls -alh"
+
+    shopt -s histappend
+
+
+    # Ruby RIP
+    export RUBYLIB="$RUBYLIB:$HOME/Sites/rip/lib"
+    export PATH="$PATH:$HOME/Sites/rip/bin"
+    export RIPVERBOSE=1
+    export RIPDIR=$HOME/.rip
+    export RUBYLIB="/Users/nbstrite/.rip/active/lib:/active/lib::/Users/nbstrite/Sites/rip/lib"
+    export PATH=$PATH:/Users/nbstrite/.rip/active/bin:/Users/nbstrite/Sites/rip/bin
+    export MANPATH=$MANPATH:/Users/nbstrite/.rip/active/man
+
+    . ~/.bashrc.d/git-completion.bash
+    . ~/.bashrc.d/git-flow-completion.bash
+
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 fi
-
-# Aliases
-alias rvim="gvim --remote-silent"
-alias emacs='echo "You are trying to learn vi... type \`vi\` instead."'
-alias em="emacs"
-alias ll="ls -alh"
-
-shopt -s histappend
-
-
-# Ruby RIP
-export RUBYLIB="$RUBYLIB:$HOME/Sites/rip/lib"
-export PATH="$PATH:$HOME/Sites/rip/bin"
-export RIPVERBOSE=1
-export RIPDIR=$HOME/.rip
-export RUBYLIB="/Users/nbstrite/.rip/active/lib:/active/lib::/Users/nbstrite/Sites/rip/lib"
-export PATH=$PATH:/Users/nbstrite/.rip/active/bin:/Users/nbstrite/Sites/rip/bin
-export MANPATH=$MANPATH:/Users/nbstrite/.rip/active/man
-
-. ~/.bashrc.d/git-completion.bash
-. ~/.bashrc.d/git-flow-completion.bash

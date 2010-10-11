@@ -3,3 +3,4 @@
 *.pyo
 *.bak
 vim/tmp/
+vim/.netrwhist

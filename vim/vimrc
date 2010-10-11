@@ -17,7 +17,7 @@ set expandtab
 
 " Basic options
 set encoding=utf-8
-set scrolloff=999
+set scrolloff=10
 set autoindent
 set showmode
 set showcmd
