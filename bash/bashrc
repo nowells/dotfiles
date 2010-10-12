@@ -33,7 +33,7 @@ $ "
     export CLICOLOR=1
     export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
     export LC_CTYPE=en_US.utf-8
-    export PATH=/usr/local/sbin:/usr/local/bin:$PATH
+    export PATH=~/bin:/usr/local/sbin:/usr/local/bin:$PATH
     export IGNOREEOF=1
     export PYTHONDONTWRITEBYTECODE=1
     export LESS=FRSX

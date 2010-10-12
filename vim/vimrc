@@ -1,13 +1,22 @@
+scriptencoding utf-8
+
 " ./configure --with-features=BIG --enable-pythoninterp --enable-rubyinterp --enable-enablemultibyte --enable-gui=no --with-x --enable-cscope --with-compiledby="Nowell Strite <nowell@strite.org>" --prefix=/usr
 
 filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 filetype plugin indent on
+
+" Set encoding
+set encoding=utf-8 nobomb    " BOM often causes trouble
 
 set nocompatible
 
 " Security
 set modelines=0
+
+" Setup default shell
+set shell=bash
 
 " Tabs/spaces
 set tabstop=4
@@ -114,6 +123,11 @@ if &t_Co > 2 || has("gui_running")
     " switch syntax highlighting on, when the terminal has colors
     set background=dark
     syntax on
+endif
+
+" Highlight the diff, not the code
+if &diff
+    syntax off
 endif
 
 
