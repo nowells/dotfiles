@@ -41,7 +41,7 @@ set directory=~/.vim/tmp/swap/   " swap files
 set backup                        " enable backups
 
 " Add persistent undo
-if has("undofile")
+if v:version >= 703
     try
         set undodir=~/.vim/tmp/undodir
         set undofile
@@ -89,7 +89,8 @@ vmap <tab> %
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-if has("colorcolumn")
+
+if v:version >= 703
     set colorcolumn=85
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -144,7 +145,7 @@ map <leader>w <C-w>v<C-w>l
 map <leader>=  yypVr
 
 " Folding
-if has("foldlevelstart")
+if v:version >= 703
     set foldlevelstart=0
 endif
 nnoremap <Space> zO
@@ -170,7 +171,7 @@ function! MyFoldText()
         return line . '...' . repeat(" ",fillcharcount) . foldedlinecount . '...' . ' '
     endif
 endfunction
-if has("foldtext")
+if v:version >= 703
     set foldtext=MyFoldText()
 endif
 
