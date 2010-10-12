@@ -41,11 +41,13 @@ set directory=~/.vim/tmp/swap/   " swap files
 set backup                        " enable backups
 
 " Add persistent undo
-try
-    set undodir=~/.vim/tmp/undodir
-    set undofile
-catch
-endtry
+if has("undofile")
+    try
+        set undodir=~/.vim/tmp/undodir
+        set undofile
+    catch
+    endtry
+endif
 
 set pastetoggle=<F12>
 
@@ -87,7 +89,11 @@ vmap <tab> %
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85
+if has("colorcolumn")
+    set colorcolumn=85
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
 
 " Use the same symbols as TextMate for tabstops and EOLs
 if has('gui_running')
@@ -138,7 +144,9 @@ map <leader>w <C-w>v<C-w>l
 map <leader>=  yypVr
 
 " Folding
-set foldlevelstart=0
+if has("foldlevelstart")
+    set foldlevelstart=0
+endif
 nnoremap <Space> zO
 vnoremap <Space> zO
 au BufNewFile,BufRead *.html map <leader>ft Vatzf
@@ -162,7 +170,9 @@ function! MyFoldText()
         return line . '...' . repeat(" ",fillcharcount) . foldedlinecount . '...' . ' '
     endif
 endfunction
-set foldtext=MyFoldText()
+if has("foldtext")
+    set foldtext=MyFoldText()
+endif
 
 " Fuck you, help key.
 if has('gui_running')
