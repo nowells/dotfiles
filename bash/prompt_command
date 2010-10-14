@@ -1,5 +1,14 @@
 #!/bin/bash
 
+if [[ -h "ve" && -d "ve" ]]; then
+    VE_DIR="`readlink ve 2>/dev/null`"
+    VE_NAME="`basename $VE_DIR 2>/dev/null`"
+    if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
+        #workon $VE_NAME
+        printf "\n\e${NOWELLS_RED_COLOR}Warning!!!\e${NOWELLS_DEFAULT_COLOR} You are inside of a virtualenv.\n"
+        printf "Please run \e${NOWELLS_GREEN_COLOR}workon $VE_NAME\e${NOWELLS_DEFAULT_COLOR}\n"
+    fi
+fi
 
 # Provide feedback if we are not currently working within the selected VIRTUAL_ENV
 if [[ -ne "$VIRTUAL_ENV" ]]; then
