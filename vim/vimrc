@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-" ./configure --with-features=BIG --enable-pythoninterp --enable-rubyinterp --enable-enablemultibyte --enable-gui=no --with-x --enable-cscope --with-compiledby="Nowell Strite <nowell@strite.org>" --prefix=/usr
+" ./configure --enable-multibyte --with-features=HUGE --enable-pythoninterp --enable-rubyinterp --enable-enablemultibyte --enable-gui=no --enable-cscope --with-compiledby="Nowell Strite <nowell@strite.org>" --prefix=/usr --with-tlib=ncurses --without-x
 
 filetype off
 call pathogen#runtime_append_all_bundles()
@@ -58,7 +58,7 @@ if v:version >= 703
     endtry
 endif
 
-set pastetoggle=<F12>
+set pastetoggle=<F8>
 
 " Leader
 let mapleader = ","
