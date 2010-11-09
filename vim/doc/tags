@@ -54,6 +54,7 @@ g:rails_statusline	rails.txt	/*g:rails_statusline*
 g:rails_syntax	rails.txt	/*g:rails_syntax*
 g:rails_tabstop	rails.txt	/*g:rails_tabstop*
 g:rails_url	rails.txt	/*g:rails_url*
+greplace.txt	greplace.txt	/*greplace.txt*
 macros/rails.vim	rails.txt	/*macros\/rails.vim*
 rails	rails.txt	/*rails*
 rails-'cfu'	rails.txt	/*rails-'cfu'*
