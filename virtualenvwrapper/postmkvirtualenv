@@ -6,3 +6,5 @@ ln -sfn "$VIRTUAL_ENV" "`readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`/ve"
 
 echo "cd `readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`" >> $VIRTUAL_ENV/bin/postactivate
 echo 'ln -sfn "$VIRTUAL_ENV" "`readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`/ve"' >> $VIRTUAL_ENV/bin/postactivate
+
+pip install ipdb

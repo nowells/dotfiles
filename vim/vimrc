@@ -163,7 +163,6 @@ if v:version >= 703
     set foldlevelstart=0
 endif
 
-inoremap <S-CR> <Esc>
 nnoremap <Space> za
 onoremap <Space> <C-C>za
 vnoremap <Space> zf

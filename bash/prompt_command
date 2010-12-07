@@ -44,5 +44,7 @@ if [[ "$BASE_TERM" == "screen" ]]; then
             DIR=$(dirname $DIR)
         done
     fi
-    echo -ne "\ek$PROMPT_TITLE\e\\"
+    #echo -ne "\ek$PROMPT_TITLE\e\\"
+    echo -ne '\033k'$PROMPT_TITLE'\033\\'
+
 fi
