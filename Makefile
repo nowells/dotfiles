@@ -27,7 +27,7 @@ install-terminal-settings:
 install-git:
 	rm -f ~/.gitconfig ~/.gitignore
 	ln -s `pwd`/git/gitconfig ~/.gitconfig
-	ls -s `pwd`/git/gitignore ~/.gitignore
+	ln -s `pwd`/git/gitignore ~/.gitignore
 
 install-tmux:
 	rm -f ~/.tmux.conf
