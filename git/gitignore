@@ -1,0 +1,10 @@
+*~
+.DS_Store
+\#*#
+*.pyc
+.bak/
+vssver.scc
+.svn/
+ve/
+pip-log.txt
+build/

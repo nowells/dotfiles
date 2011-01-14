@@ -1,5 +1,5 @@
 install: install-vim install-bash install-virtualenvwrapper \
-         install-terminal-settings
+         install-terminal-settings install-tmux install-git
 
 install-vim:
 	rm -rf ~/.vim ~/.vimrc
@@ -23,3 +23,12 @@ install-terminal-settings:
 	cp ~/Library/Preferences/com.apple.Terminal.plist terminal/old-settings.bak
 	cp terminal/com.apple.Terminal.plist ~/Library/Preferences
 	@echo "Old terminal settings were saved in terminal folder"
+
+install-git:
+	rm -f ~/.gitconfig ~/.gitignore
+	ln -s `pwd`/git/gitconfig ~/.gitconfig
+	ls -s `pwd`/git/gitignore ~/.gitignore
+
+install-tmux:
+	rm -f ~/.tmux.conf
+	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf

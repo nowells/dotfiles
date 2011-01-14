@@ -1,0 +1,93 @@
+[user]
+name = Nowell Strite
+email = nowell@strite.org
+signingkey = 0x6B2F3382
+
+[github]
+user = nowells
+token = 9eab94a0dd4d55b40830f85f789ea48d
+
+[push]
+default = current
+
+[alias]
+co = checkout
+st = status
+ci = commit
+br = branch
+lc = log --stat --no-merges
+gg = goggles
+logtree = log --pretty=oneline --graph --all
+notmerged = cherry -v
+lg = log -p
+who = shortlog -sne --no-merges
+unstage = reset HEAD --
+visual = !gitk
+datetag = !__git-datetag
+merge-candidate = merge --no-ff
+igrep = grep --full-name -IiE
+remote-branch = !__git-remote-branch
+branch-mirror = !__git-branch-mirror
+zip = !sh -c 'git archive --format zip $1 -o `basename $PWD | tr [:upper:] [:lower:]`-$1.zip' -
+
+[color]
+diff = false 
+status = auto
+branch = auto
+interactive = auto
+ui = true
+pager = false
+
+[branch]
+autosetupmerge = always
+
+[core]
+excludesfile = ~/.gitignore
+editor = vi
+whitespace = fix
+pager = tig
+#autocrlf = true
+
+[merge]
+tool = opendiff
+
+[diff]
+tool = vimdiff
+renames = copies
+
+[mirror]
+summary = true
+
+[gitgoggles "colors"]
+local = cyan
+
+[gitgoggles]
+fetch = true
+
+[gitgoggles "table"]
+left-padding = 0
+right-padding = 0
+horizontal-rule = false
+
+[apply]
+whitespace = strip
+
+[diff "exif"]
+textconv = exiftool
+
+[diff "word"]
+textconv = strings
+
+[diff "pdf"]
+textconv = pdf2text
+
+[gitflow "branch"]
+master = master
+develop = develop
+
+[gitflow "prefix"]
+feature = feature/
+release = release/
+hotfix = hotfix/
+support = support/
+versiontag = production/$(date +%Y/%m/%d/)
