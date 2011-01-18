@@ -7,7 +7,7 @@ install-vim:
 	ln -s ~/.vim/vimrc ~/.vimrc
 
 install-bash:
-	rm -f ~/.bashrc ~/.bashrc.d
+	rm -rf ~/.bashrc ~/.bashrc.d
 	ln -sn `pwd`/bash/bashrc ~/.bashrc
 	ln -sn `pwd`/bash ~/.bashrc.d
 	
