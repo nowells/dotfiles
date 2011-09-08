@@ -28,7 +28,6 @@ $ "
     export PROMPT_COMMAND="~/.bashrc.d/prompt_command"
 
     export BASE_TERM=$TERM
-    #export TERM=xterm-256color
     export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
     export CLICOLOR=1
     export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
@@ -63,6 +62,7 @@ $ "
     alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
     alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
     alias wget="wget --no-check-certificate"
+    alias tmux="TERM=screen-256color-bce tmux"
 
     shopt -s histappend
 
@@ -71,7 +71,9 @@ $ "
     export NODE_PATH=$NODE_PATH:/usr/local/lib/node
     export PATH=$PATH:/usr/local/share/npm/bin
 
-    export TERM="xterm-256color"
+    # This needs to be xterm-256color-bce as opposed to xterm-256color for tmux/screen
+    # to allow for redrawing of bg color
+    #export TERM="xterm-256color"
 
     . ~/.bashrc.d/git-completion.bash
     . ~/.bashrc.d/git-flow-completion.bash

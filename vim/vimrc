@@ -52,9 +52,6 @@ set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
 set backup                        " enable backups
 
-" Indents
-let g:indent_guides_enable_on_vim_startup = 1
-
 " Add persistent undo
 if v:version >= 703
     try
@@ -115,26 +112,6 @@ endif
 if has('gui_running')
    set list
    set listchars=tab:▸\ ,eol:¬
-endif
-
-
-""""""""""""""""""
-"" Syntax/Colors
-""""""""""""""""""
-colorscheme default
-let g:solarized_termcolors=256
-if &t_Co >= 256 || has("gui_running")
-   colorscheme solarized
-endif
-if &t_Co > 2 || has("gui_running")
-    " switch syntax highlighting on, when the terminal has colors
-    set background=dark
-    syntax on
-endif
-
-" Highlight the diff, not the code
-if &diff
-    syntax off
 endif
 
 
@@ -398,3 +375,33 @@ let g:gist_clip_command = 'pbcopy'
 let g:gist_show_privates = 1
 let g:github_user = 'nowells'
 let g:github_token = '9eab94a0dd4d55b40830f85f789ea48d'
+
+
+""""""""""""""""""
+"" Syntax/Colors
+""""""""""""""""""
+let g:solarized_termcolors=256
+if &t_Co >= 256 || has("gui_running")
+   colorscheme molokai
+endif
+if &t_Co > 2 || has("gui_running")
+    " switch syntax highlighting on, when the terminal has colors
+    set background=dark
+    syntax on
+endif
+
+" Highlight the diff, not the code
+if &diff
+    syntax off
+endif
+
+" For some reason we need to define our theme all the way at the bottom
+colorscheme molokai
+
+" Indents
+"let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#121212
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626
+"hi IndentGuidesOdd guibg=#121212
+"hi IndentGuidesEven guibg=#262626
