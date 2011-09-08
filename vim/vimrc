@@ -7,6 +7,9 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype plugin indent on
 
+" RopeVim
+let ropevim_guess_project = 1
+
 " Set encoding
 set encoding=utf-8 nobomb    " BOM often causes trouble
 
@@ -48,6 +51,9 @@ set laststatus=2
 set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
 set backup                        " enable backups
+
+" Indents
+" let g:indent_guides_enable_on_vim_startup = 1
 
 " Add persistent undo
 if v:version >= 703
