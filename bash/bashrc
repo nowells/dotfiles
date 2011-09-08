@@ -9,9 +9,9 @@ if [[ -n "$PS1" ]] ; then
     export NOWELLS_ORANGE_COLOR="[33m"
     export NOWELLS_RED_COLOR="[31m"
     if [ `id -u` == '0' ]; then
-      export NOWELLS_USER_COLOR=$NOWELLS_RED_COLOR
+        export NOWELLS_USER_COLOR=$NOWELLS_RED_COLOR
     else
-      export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
+        export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
     fi
     NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
 
@@ -46,12 +46,12 @@ $ "
 
     # virtualenvwrapper and pip
     if [ `id -u` != '0' ]; then
-      export VIRTUALENV_USE_DISTRIBUTE=1
-      export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/2.6/bin/python
-      export WORKON_HOME=$HOME/.virtualenvs
-      source /usr/local/bin/virtualenvwrapper.sh
-      export PIP_VIRTUALENV_BASE=$WORKON_HOME
-      export PIP_RESPECT_VIRTUALENV=true
+        export VIRTUALENV_USE_DISTRIBUTE=1
+        export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/2.6/bin/python
+        export WORKON_HOME=$HOME/.virtualenvs
+        source /usr/local/bin/virtualenvwrapper.sh
+        export PIP_VIRTUALENV_BASE=$WORKON_HOME
+        export PIP_RESPECT_VIRTUALENV=true
     fi
 
     # Aliases

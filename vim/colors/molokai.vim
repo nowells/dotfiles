@@ -217,3 +217,6 @@ if &t_Co > 255
    hi LineNr          ctermfg=250 ctermbg=234
    hi NonText         ctermfg=250 ctermbg=234
 end
+
+hi IndentGuidesOdd  ctermfg=118 ctermbg=235
+hi IndentGuidesEven ctermfg=253 ctermbg=66

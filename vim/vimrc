@@ -381,13 +381,13 @@ let g:github_token = '9eab94a0dd4d55b40830f85f789ea48d'
 "" Syntax/Colors
 """"""""""""""""""
 let g:solarized_termcolors=256
-if &t_Co >= 256 || has("gui_running")
-   colorscheme molokai
-endif
 if &t_Co > 2 || has("gui_running")
     " switch syntax highlighting on, when the terminal has colors
     set background=dark
     syntax on
+endif
+if &t_Co >= 256 || has("gui_running")
+   colorscheme molokai
 endif
 
 " Highlight the diff, not the code
@@ -395,13 +395,7 @@ if &diff
     syntax off
 endif
 
-" For some reason we need to define our theme all the way at the bottom
-colorscheme molokai
-
 " Indents
-"let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=#121212
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#262626
-"hi IndentGuidesOdd guibg=#121212
-"hi IndentGuidesEven guibg=#262626
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
