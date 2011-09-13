@@ -22,7 +22,9 @@ if [[ -n "$PS1" ]] ; then
     export NOWELLS_BASEPROMPT='\n\e${NOWELLS_USER_COLOR}\u \
 \e${NOWELLS_GRAY_COLOR}at \e${NOWELLS_ORANGE_COLOR}\h \
 \e${NOWELLS_GRAY_COLOR}in \e${NOWELLS_GREEN_COLOR}\w\
-\e${NOWELLS_GRAY_COLOR}$(nowells_vcprompt)\e${NOWELLS_DEFAULT_COLOR}'
+\e${NOWELLS_GRAY_COLOR}$(nowells_vcprompt)\
+\e${NOWELLS_ORANGE_COLOR} $(~/.rvm/bin/rvm-prompt i v p g)\
+\e${NOWELLS_DEFAULT_COLOR}'
     export PS1="${NOWELLS_BASEPROMPT}
 $ "
     export PROMPT_COMMAND="~/.bashrc.d/prompt_command"
@@ -75,8 +77,13 @@ $ "
     # to allow for redrawing of bg color
     #export TERM="xterm-256color"
 
+    if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
+    fi
+
     . ~/.bashrc.d/git-completion.bash
-    . ~/.bashrc.d/git-flow-completion.bash
+    . ~/.bashrc.d/rails.bash
 
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+    [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 fi

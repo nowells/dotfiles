@@ -23,7 +23,7 @@ if [[ -ne "$VIRTUAL_ENV" ]]; then
 fi
 
 
-if [[ "$BASE_TERM" == "screen" ]]; then
+if [[ "$BASE_TERM" == "screen-256color" ]]; then
     # Setup prompt title name for screen session tab naming.
     PROMPT_TITLE='shell'
     if [[ -ne "$VIRTUAL_ENV" ]]; then

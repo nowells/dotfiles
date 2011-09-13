@@ -8,7 +8,7 @@ user = nowells
 token = 9eab94a0dd4d55b40830f85f789ea48d
 
 [push]
-default = current
+default = tracking
 
 [alias]
 co = checkout
@@ -17,6 +17,7 @@ ci = commit
 br = branch
 lc = log --stat --no-merges
 gg = goggles
+p = push -u
 logtree = log --pretty=oneline --graph --all
 notmerged = cherry -v
 lg = log -p
