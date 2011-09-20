@@ -378,6 +378,10 @@ let g:github_user = 'nowells'
 let g:github_token = '9eab94a0dd4d55b40830f85f789ea48d'
 
 
+vnoremap <Tab>  >gv
+vnoremap <S-Tab>  <gv
+
+
 """"""""""""""""""
 "" Syntax/Colors
 """"""""""""""""""
