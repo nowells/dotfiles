@@ -378,8 +378,14 @@ let g:github_user = 'nowells'
 let g:github_token = '9eab94a0dd4d55b40830f85f789ea48d'
 
 
+" Make tab key work in visual mode
 vnoremap <Tab>  >gv
 vnoremap <S-Tab>  <gv
+
+" Join all lines in a paragraph
+nnoremap <S-F7> vipJ
+" Format selected lines
+xnoremap Q  gq
 
 
 """"""""""""""""""

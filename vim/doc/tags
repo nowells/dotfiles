@@ -196,3 +196,8 @@ rails-template-types	rails.txt	/*rails-template-types*
 rails-type-navigation	rails.txt	/*rails-type-navigation*
 rails-vim-integration	rails.txt	/*rails-vim-integration*
 rails.txt	rails.txt	/*rails.txt*
+textile-changelog	textile.txt	/*textile-changelog*
+textile-commands	textile.txt	/*textile-commands*
+textile-credits	textile.txt	/*textile-credits*
+textile-requirements	textile.txt	/*textile-requirements*
+textile.txt	textile.txt	/*textile.txt*
