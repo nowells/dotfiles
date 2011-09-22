@@ -16,7 +16,7 @@ if [[ -n "$PS1" ]] ; then
     NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
 
     nowells_vcprompt() {
-      $NOWELLS_VCPROMPT_EXECUTABLE -f $' on \033[34m%n:\033[00m%[unknown]b\033[32m'
+      $NOWELLS_VCPROMPT_EXECUTABLE -f $' on \033[34m%n:\033[35m%[unknown]b\033[32m'
     }
 
     export NOWELLS_BASEPROMPT='\n\e${NOWELLS_USER_COLOR}\u \
