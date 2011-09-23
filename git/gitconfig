@@ -11,6 +11,7 @@ token = 9eab94a0dd4d55b40830f85f789ea48d
 default = tracking
 
 [alias]
+u = remote update --prune
 co = checkout
 st = status
 ci = commit

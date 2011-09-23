@@ -1,6 +1,10 @@
 install: install-vim install-bash install-virtualenvwrapper \
          install-terminal-settings install-tmux install-git \
-		 install-python
+				 install-python install-rvm
+
+install-rvm:
+	rm -f ~/.rvmrc
+	ln -s `pwd`/rvm/rvmrc ~/.rvmrc
 
 install-python:
 	rm -f ~/.pythonrc
