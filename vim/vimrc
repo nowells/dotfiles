@@ -1,149 +1,99 @@
 scriptencoding utf-8
-
 " ./configure --enable-multibyte --with-features=HUGE --enable-pythoninterp --enable-rubyinterp --enable-enablemultibyte --enable-gui=no --enable-cscope --with-compiledby="Nowell Strite <nowell@strite.org>" --prefix=/usr --with-tlib=ncurses --without-x
 
-filetype off
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype plugin indent on
 
-" RopeVim
-let ropevim_guess_project = 1
-
-" Set encoding
-set encoding=utf-8 nobomb    " BOM often causes trouble
-
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Security
-set modelines=0
-
-" Setup default shell
-set shell=bash
-
-" Tabs/spaces
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-
-" Basic options
-set encoding=utf-8
-set scrolloff=10
-set autoindent
-set showmode
-set showcmd
+" Allow backgrounding buffers without writing them, and remember marks/undo
+" for backgrounded buffers
 set hidden
+
+" Remember more commands and search history
+set history=1000
+
+" Make tab completion for files/buffers act like bash
 set wildmenu
-set wildmode=list:longest
-set visualbell
-set cursorline
-set ttyfast
-set ruler
+" use emacs-style tab completion when selecting files, etc
+set wildmode=longest,list
+
+" Make searches case-sensitive only if they contain upper-case characters
+set ignorecase
+set smartcase
+
+" Keep more context when scrolling off the end of a buffer
+set scrolloff=3
+
+" allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Turn on line-numbers
-set number
+" Store temporary files in a central spot
+set backupdir=~/.vim/tmp/backup/,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim/tmp/swap/,~/.tmp,~/tmp,/var/tmp,/tmp
 
-set laststatus=2
+if has("vms")
+  set nobackup		" do not keep a backup file, use versions instead
+else
+  set backup		" keep a backup file
+endif
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
 
-" Backups
-set backupdir=~/.vim/tmp/backup/ " backups
-set directory=~/.vim/tmp/swap/   " swap files
-set backup                        " enable backups
-
-" Add persistent undo
-if v:version >= 703
-    try
-        set undodir=~/.vim/tmp/undodir
-        set undofile
-    catch
-    endtry
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  set hlsearch
+  " set guifont=Monaco:h14
+  set guifont=Inconsolata-dz:h14
 endif
 
-set pastetoggle=<F8>
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
 
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  augroup END
+
+else
+  set autoindent		" always set autoindenting on
+endif " has("autocmd")
+
+""""""""
 " Leader
+""""""""
 let mapleader = ","
 let maplocalleader = "-"
 
+" indentation rules
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+" set smartindent
 
-""""""""""""""
-"" Spelling
-""""""""""""""
-map <leader>ss :setlocal spell!<cr>
-map <leader>sf :setlocal nospell!<cr>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
-
-"""""""""""""
-"" Searching
-"""""""""""""
-nnoremap / /\v
-vnoremap / /\v
-set ignorecase
-set smartcase
-set incsearch
-set showmatch
-set hlsearch
-set gdefault
-map <leader><space> :noh<cr>
-runtime macros/matchit.vim
-nmap <tab> %
-vmap <tab> %
-
-
-"""""""""""""
-"" Wrapping
-"""""""""""""
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-
-if v:version >= 703
-    set colorcolumn=85
-else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
-
-" Use the same symbols as TextMate for tabstops and EOLs
-if has('gui_running')
-   set list
-   set listchars=tab:▸\ ,eol:¬
-endif
-
-
-""""""""""""""
-"" NERD Tree
-""""""""""""""
-map <leader>` :NERDTreeToggle<cr>
-map <F2> :NERDTreeToggle<cr>
-let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', '^.git$']
-
-" Use the damn hjkl keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-
-" And make them fucking work, too.
-nnoremap j gj
-nnoremap k gk
-
-" Easy buffer navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <leader>w <C-w>v<C-w>l
-
-" Easy heading creation with RestructuredText
-map <leader>=  yypVr
-
+"""""""""
 " Folding
+"""""""""
 if v:version >= 703
     set foldlevelstart=0
 endif
@@ -176,6 +126,228 @@ endfunction
 if v:version >= 703
     set foldtext=MyFoldText()
 endif
+
+"""""""""""""""""
+" searching rules
+"""""""""""""""""
+set laststatus=2
+set showmatch
+set incsearch
+set gdefault
+nnoremap / /\v
+vnoremap / /\v
+" map leader space to clear search highlight
+map <leader><Space> :noh<cr>
+
+" wrap lines at 78 characters
+set textwidth=78
+
+""""""""""
+" Movement
+""""""""""
+" Make window switching commands be just control + movement
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Running tests
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-makegreen binds itself to ,t unless something else is bound to its
+" function.
+map <leader>\dontstealmymapsmakegreen :w\|:call MakeGreen('spec')<cr>
+
+function! RunTests(filename)
+    " Write the file and run tests for the given filename
+    :w
+    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+    if match(a:filename, '\.feature$') != -1
+        exec ":!bundle exec cucumber " . a:filename
+    else
+        if filereadable("script/test")
+            exec ":!script/test " . a:filename
+        else
+            exec ":!bundle exec rspec " . a:filename
+        end
+    end
+endfunction
+
+function! SetTestFile()
+    " Set the spec file that tests will be run for.
+    let t:grb_test_file=@%
+endfunction
+
+function! RunTestFile(...)
+    if a:0
+        let command_suffix = a:1
+    else
+        let command_suffix = ""
+    endif
+
+    " Run the tests for the previously-marked file.
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
+    if in_test_file
+        call SetTestFile()
+    elseif !exists("t:grb_test_file")
+        return
+    end
+    call RunTests(t:grb_test_file . command_suffix)
+endfunction
+
+function! RunNearestTest()
+    let spec_line_number = line('.')
+    call RunTestFile(":" . spec_line_number)
+endfunction
+
+map <leader>t :call RunTestFile()<cr>
+map <leader>T :call RunNearestTest()<cr>
+map <leader>a :call RunTests('')<cr>
+map <leader>c :w\|:!cucumber<cr>
+map <leader>C :w\|:!cucumber --profile wip<cr>
+
+" Change which file opens after executing :Rails command
+let g:rails_default_file='config/database.yml'
+
+" Turn on code folding for ruby
+let ruby_fold = 1
+
+"fix grep
+let Grep_Find_Use_Xargs = 0
+let Grep_Default_Filelist = '*.rb'
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+
+function s:setupWrapping()
+  set wrap
+  set wrapmargin=2
+  set textwidth=72
+endfunction
+
+function s:setupMarkup()
+  call s:setupWrapping()
+  map <buffer> <Leader>p :Hammer<CR>
+endfunction
+
+" md, markdown, and mk are markdown and define buffer-local preview
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
+
+" add json syntax highlighting
+au BufNewFile,BufRead *.json set ft=javascript
+
+au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+
+""""""""""""""
+" Other stuff
+""""""""""""""
+filetype off
+
+call pathogen#helptags()
+filetype plugin indent on
+
+" RopeVim
+let ropevim_guess_project = 1
+
+" Set encoding
+set encoding=utf-8 nobomb    " BOM often causes trouble
+
+" Security
+set modelines=0
+
+" Setup default shell
+set shell=bash
+
+" Basic options
+set encoding=utf-8
+set autoindent
+set showmode
+set visualbell
+set cursorline
+set ttyfast
+
+" Turn on line-numbers
+set number
+
+" Add persistent undo
+if v:version >= 703
+    try
+        set undodir=~/.vim/tmp/undodir
+        set undofile
+    catch
+    endtry
+endif
+
+set pastetoggle=<F8>
+
+
+
+""""""""""""""
+"" Spelling
+""""""""""""""
+map <leader>ss :setlocal spell!<cr>
+map <leader>sf :setlocal nospell!<cr>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+
+"""""""""""""
+"" Searching
+"""""""""""""
+runtime macros/matchit.vim
+nmap <tab> %
+vmap <tab> %
+
+
+"""""""""""""
+"" Wrapping
+"""""""""""""
+set wrap
+set formatoptions=qrn1
+
+if v:version >= 703
+    set colorcolumn=85
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+" Use the same symbols as TextMate for tabstops and EOLs
+if has('gui_running')
+   set list
+   set listchars=tab:▸\ ,eol:¬
+endif
+
+
+""""""""""""""
+"" NERD Tree
+""""""""""""""
+map <leader>` :NERDTreeToggle<cr>
+map <F2> :NERDTreeToggle<cr>
+let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', '^.git$', '\.rbc$']
+
+" Use the damn hjkl keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
+" And make them fucking work, too.
+nnoremap j gj
+nnoremap k gk
+
+" Easy buffer navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <leader>w <C-w>v<C-w>l
+
+" Easy heading creation with RestructuredText
+map <leader>=  yypVr
+
 
 " Fuck you, help key.
 if has('gui_running')
