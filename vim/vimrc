@@ -95,7 +95,7 @@ set autoindent
 " Folding
 """""""""
 if v:version >= 703
-    set foldlevelstart=0
+    set foldlevelstart=99
 endif
 
 inoremap <C-j> <Esc>
@@ -242,10 +242,11 @@ au BufRead,BufNewFile *.txt call s:setupWrapping()
 """"""""""""""
 " Other stuff
 """"""""""""""
-filetype off
-
 call pathogen#helptags()
-filetype plugin indent on
+
+filetype on
+filetype plugin on
+filetype indent on
 
 " RopeVim
 let ropevim_guess_project = 1
