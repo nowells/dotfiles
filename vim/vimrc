@@ -248,9 +248,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" RopeVim
-let ropevim_guess_project = 1
-
 " Set encoding
 set encoding=utf-8 nobomb    " BOM often causes trouble
 
