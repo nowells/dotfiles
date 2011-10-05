@@ -6,6 +6,7 @@ if [[ -n "$PS1" ]] ; then
     export NOWELLS_GRAY_COLOR="[37m"
     export NOWELLS_PINK_COLOR="[35m"
     export NOWELLS_GREEN_COLOR="[32m"
+    export NOWELLS_BLUE_COLOR="[34m"
     export NOWELLS_ORANGE_COLOR="[33m"
     export NOWELLS_RED_COLOR="[31m"
     if [ `id -u` == '0' ]; then
@@ -13,16 +14,16 @@ if [[ -n "$PS1" ]] ; then
     else
         export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
     fi
-    NOWELLS_VCPROMPT_EXECUTABLE=vcprompt
+    NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
 
     nowells_vcprompt() {
-      $NOWELLS_VCPROMPT_EXECUTABLE -f $' on \033[34m%n:\033[35m%[unknown]b\033[32m'
+      $NOWELLS_VCPROMPT_EXECUTABLE -f $'on %n:%b'
     }
 
     export NOWELLS_BASEPROMPT='\n\e${NOWELLS_USER_COLOR}\u \
 \e${NOWELLS_GRAY_COLOR}at \e${NOWELLS_ORANGE_COLOR}\h \
 \e${NOWELLS_GRAY_COLOR}in \e${NOWELLS_GREEN_COLOR}\w\
-\e${NOWELLS_GRAY_COLOR}$(nowells_vcprompt)\
+\e${NOWELLS_USER_COLOR} $(nowells_vcprompt)\
 \e${NOWELLS_ORANGE_COLOR} $(~/.rvm/bin/rvm-prompt i v p g)\
 \e${NOWELLS_DEFAULT_COLOR}'
     export PS1="${NOWELLS_BASEPROMPT}
