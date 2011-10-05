@@ -13,7 +13,7 @@ if [[ -n "$PS1" ]] ; then
     else
         export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
     fi
-    NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
+    NOWELLS_VCPROMPT_EXECUTABLE=vcprompt
 
     nowells_vcprompt() {
       $NOWELLS_VCPROMPT_EXECUTABLE -f $' on \033[34m%n:\033[35m%[unknown]b\033[32m'
@@ -43,13 +43,9 @@ $ "
     export LESS=FRSX
 
     # Mapnik
-    export PYTHONPATH=/Library/Frameworks/Mapnik.framework/Python:$PYTHONPATH
-    export PATH=/Library/Frameworks/Mapnik.framework/Programs:$PATH
-
-    # virtualenvwrapper and pip
     if [ `id -u` != '0' ]; then
         export VIRTUALENV_USE_DISTRIBUTE=1
-        export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/2.6/bin/python
+        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
         export WORKON_HOME=$HOME/.virtualenvs
         source /usr/local/bin/virtualenvwrapper.sh
         export PIP_VIRTUALENV_BASE=$WORKON_HOME
