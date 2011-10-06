@@ -80,7 +80,7 @@ $ "
     fi
 
     . ~/.bashrc.d/git-completion.bash
-    . ~/.bashrc.d/rails.bash
+    complete -C rails-complete -o default rails
 
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
