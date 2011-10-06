@@ -18,6 +18,7 @@ install-vim:
 install-bash:
 	rm -rf ~/.bashrc ~/.bashrc.d
 	ln -sn `pwd`/bash/bashrc ~/.bashrc
+	ln -sn `pwd`/bash/bash_profile ~/.bash_profile
 	ln -sn `pwd`/bash ~/.bashrc.d
 	
 install-virtualenvwrapper:
