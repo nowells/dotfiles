@@ -46,7 +46,7 @@
 	<key>SecureKeyboardEntry</key>
 	<true/>
 	<key>Shell</key>
-	<string>/bin/zsh</string>
+	<string>/bin/bash</string>
 	<key>Startup Window Group</key>
 	<string>work</string>
 	<key>Startup Window Settings</key>
