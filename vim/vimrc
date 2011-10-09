@@ -289,7 +289,7 @@ map <leader>sf :setlocal nospell!<cr>
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
-map <leader>s? z=
+map <leader>sl z=
 
 
 """""""""""""
@@ -326,22 +326,24 @@ map <leader>` :NERDTreeToggle<cr>
 map <F2> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['.vim$', '\~$', '.*\.pyc$', 'pip-log\.txt$', '^.git$', '\.rbc$']
 
-" Use the damn hjkl keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-
 " And make them fucking work, too.
 nnoremap j gj
 nnoremap k gk
 
-" Easy buffer navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <leader>w <C-w>v<C-w>l
+" Easy tab navigation
+" New tab
+nnoremap <S-Up> :tabnew<cr>
+" New window
+nnoremap <S-Down> <C-w>v<C-w>l
+" Tab navigation
+nnoremap <S-Left> :tabprevious<cr>
+nnoremap <S-Right> :tabnext<cr>
+" window navigation
+nnoremap <Up> <C-w>k
+nnoremap <Down> <C-w>j
+nnoremap <Left> <C-w>h
+nnoremap <Right> <C-w>l
+
 
 " Easy heading creation with RestructuredText
 map <leader>=  yypVr
@@ -351,9 +353,6 @@ map <leader>=  yypVr
 if has('gui_running')
     set fuoptions=maxvert,maxhorz
 endif
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
 
 " Various syntax stuff
 au BufNewFile,BufRead *.less set filetype=less
