@@ -63,6 +63,7 @@ $ "
     alias wget="wget --no-check-certificate"
     alias tmux="TERM=screen-256color-bce tmux"
     alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"
+    alias cuke="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t ~@slow"
 
     shopt -s histappend
 
@@ -82,6 +83,18 @@ $ "
     . ~/.bashrc.d/git-completion.bash
     complete -C rails-complete -o default rails
 
+    continuous-make() {
+      while true; do
+        if ! make "$@" -q; then
+          make "$@"
+        fi
+        sleep 5
+      done
+    }
+
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
+    export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,*"
+    export NODE_PATH=/usr/local/lib/node_modules
 fi
