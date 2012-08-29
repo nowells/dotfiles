@@ -64,11 +64,20 @@ $ "
     alias tmux="TERM=screen-256color-bce tmux"
     alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"
     alias cuke="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t ~@slow"
+    alias cukewip="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -p wip"
+    alias dbreset='bundle && thor import_from_prod:stale --app && rake migrate:all && RAILS_ENV=cucumber rake db:schema:load'
+    alias p="echo -n '$1' > ~/.config/pianobar/ctl"
+    alias cleardns="dscacheutil -flushcache"
+    alias startpostgres="postgres -D /usr/local/var/postgres"
+
+    alias rspec="bundle exec rspec"
+    alias rake="bundle exec rake"
+    alias ey="bundle exec ey"
+    alias thor="bundle exec thor"
+    alias rails="bundle exec rails"
 
     shopt -s histappend
 
-    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home
-    export PATH=/System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/bin:$PATH
     export NODE_PATH=$NODE_PATH:/usr/local/lib/node
     export PATH=$PATH:/usr/local/share/npm/bin
 
@@ -95,6 +104,27 @@ $ "
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
 
-    export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,*"
+    export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,data_export,*"
     export NODE_PATH=/usr/local/lib/node_modules
+    export MILIEU_ENV="dev"
+
+    export VIMCLOJURE_SERVER_JAR="$HOME/lib/vimclojure/server-2.3.1.jar"
+
+    function colours() {
+      for i in {0..255} ; do
+        printf "\x1b[38;5;${i}mcolour${i}\n"
+      done
+    }
+
+    export RUBY_HEAP_MIN_SLOTS=1000000
+    export RUBY_HEAP_SLOTS_INCREMENT=1000000
+    export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+    export RUBY_GC_MALLOC_LIMIT=100000000
+    export RUBY_HEAP_FREE_MIN=500000
+
+    # This ensures that gpg agent can prompt us for passwords on subshell commands
+    export GPG_TTY=`tty`
+    eval `keychain --eval --inherit any id_rsa`
 fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

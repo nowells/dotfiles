@@ -97,6 +97,35 @@ let g:ctrlp_working_path_mode = 2
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
+" Let's remember some things, like where the .vim folder is.
+let windows=0
+let vimfiles=$HOME . "/.vim"
+let sep=":"
+let classpath = join(
+   \[".",
+   \ "src", "src/main/clojure", "src/main/resources",
+   \ "test", "src/test/clojure", "src/test/resources",
+   \ "classes", "target/classes",
+   \ "lib/*", "lib/dev/*",
+   \ "bin",
+   \ vimfiles."/lib/*"
+   \],
+   \ sep)
+
+" Settings for VimClojure
+let g:ScreenImpl = 'Tmux'
+let vimclojureRoot = vimfiles."/bundle/vim-clojure"
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
+let vimclojure#ParenRainbow=1
+let vimclojure#WantNailgun = 1
+
+" Start vimclojure nailgun server (uses screen.vim to manage lifetime)
+nmap <silent> <Leader>sc :execute "ScreenShell java -cp \"" . classpath . sep . vimclojureRoot . "/lib/*" . "\" vimclojure.nailgun.NGServer 127.0.0.1" <cr>
+" Start a generic Clojure repl (uses screen.vim)
+nmap <silent> <Leader>sC :execute "ScreenShell java -cp \"" . classpath . "\" clojure.main" <cr>
+
 """""""""
 " Folding
 """""""""
@@ -318,7 +347,7 @@ set wrap
 set formatoptions=qrn1
 
 if v:version >= 703
-    set colorcolumn=85
+    set colorcolumn=80
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif

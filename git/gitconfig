@@ -5,7 +5,7 @@ signingkey = 0x6B2F3382
 
 [github]
 user = nowells
-token = 9eab94a0dd4d55b40830f85f789ea48d
+password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
 
 [push]
 default = tracking
@@ -32,16 +32,23 @@ remote-branch = !__git-remote-branch
 branch-mirror = !__git-branch-mirror
 zip = !sh -c 'git archive --format zip $1 -o `basename $PWD | tr [:upper:] [:lower:]`-$1.zip' -
 update = !gx-update
-l = log --find-renames --find-copies --follow
 d = difftool
+rmb = !sh -c 'git branch -D $1 && git push origin $1 --delete && git remote prune origin' -
+releases = log --tags --simplify-by-decoration --pretty='format:%ad | %d'
+l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
 [color]
-diff = false 
+diff = auto
 status = auto
 branch = auto
 interactive = auto
 ui = true
-pager = false
+pager = true
+
+[color "branch"]
+current = yellow reverse
+local = yellow
+remote = green
 
 [branch]
 autosetupmerge = always
@@ -50,11 +57,8 @@ autosetupmerge = always
 excludesfile = ~/.gitignore
 editor = vi
 whitespace = fix
-pager = tig
+#pager = tig
 #autocrlf = true
-
-[merge]
-tool = threesome
 
 [diff]
 tool = Kaleidoscope
@@ -103,6 +107,15 @@ cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
 [difftool]
 prompt = false
 
-[mergetool "threesome"]
-cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'ThreesomeInit'"
-trustExitCode = true
+[merge]
+keepBackup = false
+tool = p4merge
+
+[mergetool "p4merge"]
+cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+keepTemporaries = false
+trustExitCode = false
+keepBackup = false
+
+[gist]
+private = yes
