@@ -19,8 +19,10 @@
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
+  filetype off
   call pathogen#runtime_append_all_bundles()
   call pathogen#helptags()
+  filetype plugin indent on
 
 " GeneralSettings:
   " No Vi Compatibility. That just sucks.
@@ -163,10 +165,6 @@
     set softtabstop=2
     set autoindent
     " set smartindent
-
-  " FiletypePluginsIndention:
-    filetype on
-    filetype plugin indent on
 
   " Activate a permanent ruler 
   set ruler
