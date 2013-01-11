@@ -35,9 +35,10 @@ install-terminal-settings:
 	@echo "Old terminal settings were saved in terminal folder"
 
 install-git:
-	rm -f ~/.gitconfig ~/.gitignore
+	rm -f ~/.gitconfig ~/.gitignore ~/.git_template
 	ln -s `pwd`/git/gitconfig ~/.gitconfig
 	ln -s `pwd`/git/gitignore ~/.gitignore
+	ln -s `pwd`/git_template ~/.git_template
 
 install-tmux:
 	rm -f ~/.tmux.conf
