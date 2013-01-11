@@ -4,9 +4,6 @@ rvm_gemset_create_on_use_flag=1
 # Install missing gems automatically
 rvm_install_on_use_flag=1
 
-# Use three compilation threads
-rvm_make_flags="-j 3"
-
 rvm_archflags="-arch x86_64"
 
 # To enable switching to default / system when leaving a directory in your $HOME/.rvmrc set

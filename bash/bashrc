@@ -43,6 +43,11 @@ $ "
     export PIP_REQUIRE_VIRTUALENV=true
     export LESS=FRSX
 
+    #export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/
+    #export PATH=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/bin:$PATH
+    export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/
+    export PATH=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin:$PATH
+
     # Mapnik
     if [ `id -u` != '0' ]; then
         export VIRTUALENV_USE_DISTRIBUTE=1
@@ -64,6 +69,7 @@ $ "
     alias tmux="TERM=screen-256color-bce tmux"
     alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"
     alias cuke="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t ~@slow"
+    alias cuketag="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t "
     alias cukewip="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -p wip"
     alias dbreset='bundle && thor import_from_prod:stale --app && rake migrate:all && RAILS_ENV=cucumber rake db:schema:load'
     alias p="echo -n '$1' > ~/.config/pianobar/ctl"
@@ -75,6 +81,7 @@ $ "
     alias ey="bundle exec ey"
     alias thor="bundle exec thor"
     alias rails="bundle exec rails"
+    alias http_requests='sudo ngrep -d en1 -q -W byline "^(GET|POST) .*"'
 
     shopt -s histappend
 
@@ -125,6 +132,8 @@ $ "
     # This ensures that gpg agent can prompt us for passwords on subshell commands
     export GPG_TTY=`tty`
     eval `keychain --eval --inherit any id_rsa`
+
+    . ~/.creds
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

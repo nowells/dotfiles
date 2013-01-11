@@ -33,9 +33,12 @@ branch-mirror = !__git-branch-mirror
 zip = !sh -c 'git archive --format zip $1 -o `basename $PWD | tr [:upper:] [:lower:]`-$1.zip' -
 update = !gx-update
 d = difftool
-rmb = !sh -c 'git branch -D $1 && git push origin $1 --delete && git remote prune origin' -
+rmb = !sh -c 'git branch -D $1 || git push origin $1 --delete || git remote prune origin' -
 releases = log --tags --simplify-by-decoration --pretty='format:%ad | %d'
 l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+graveyard = !sh -c 'git push graveyard origin/$0:refs/heads/$0 && git push origin $0 --delete'
+icebox = !sh -c 'git push graveyard origin/$0:refs/heads/icebox/$0 && git push origin $0 --delete'
+	ctags = !.git/hooks/ctags
 
 [color]
 diff = auto
@@ -61,11 +64,14 @@ whitespace = fix
 #autocrlf = true
 
 [diff]
-tool = Kaleidoscope
+	tool = Kaleidoscope
 renames = copies
 
 [mirror]
 summary = true
+
+[gitgoggles]
+sorted = age
 
 [gitgoggles "colors"]
 local = cyan
@@ -102,14 +108,14 @@ support = support/
 versiontag = production/$(date +%Y/%m/%d/)
 
 [difftool "Kaleidoscope"]
-cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [difftool]
-prompt = false
+	prompt = false
 
 [merge]
 keepBackup = false
-tool = p4merge
+	tool = Kaleidoscope
 
 [mergetool "p4merge"]
 cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
@@ -119,3 +125,10 @@ keepBackup = false
 
 [gist]
 private = yes
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
+[init]
+	templatedir = ~/.git_template
