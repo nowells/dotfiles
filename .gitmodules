@@ -19,9 +19,6 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/csapprox"]
-	path = vim/bundle/csapprox
-	url = https://github.com/godlygeek/csapprox.git
 [submodule "vim/bundle/python-syntax"]
 	path = vim/bundle/python-syntax
 	url = https://github.com/olivierverdier/python-syntax.vim.git
