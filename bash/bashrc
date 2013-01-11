@@ -132,8 +132,6 @@ $ "
     # This ensures that gpg agent can prompt us for passwords on subshell commands
     export GPG_TTY=`tty`
     eval `keychain --eval --inherit any id_rsa`
-
-    . ~/.creds
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
