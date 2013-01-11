@@ -18,6 +18,8 @@
 "     Search Tags: <leader>/
 "  TagBar:
 "     Show Tag Tree: <leader>l
+"  Paste:
+"     Pasting Unformatted: <F6>
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -155,6 +157,12 @@
 
     " Easy heading creation with RestructuredText
     map <leader>=  yypVr
+
+    " Toggle paste
+    " For some reason pastetoggle doesn't redraw the screen (thus the status bar
+    " doesn't change) while :set paste! does, so I use that instead.
+    " set pastetoggle=<F6>
+    nnoremap <F6> :set paste!<cr>
 
   " Search:
     set hlsearch
