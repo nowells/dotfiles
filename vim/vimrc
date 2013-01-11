@@ -19,6 +19,7 @@
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
+"   http://andrewho.co.uk/weblog/vim-pathogen-with-mutt-and-git
   filetype off
   call pathogen#runtime_append_all_bundles()
   call pathogen#helptags()
