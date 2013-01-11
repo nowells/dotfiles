@@ -1,0 +1,14 @@
+ack             dirmngr         gfortran        gpg-agent       intltool        libgcrypt       little-cms2     node            pixman          rabbitmq        tig
+apple-gcc42     dos2unix        ghostscript     graphviz        jasper          libgeotiff      lua             nspr            pkg-config      radlib          tmux
+atk             erlang          giflib          grass           jbig2dec        libgpg-error    lzlib           nss             png2ico         readline        unixodbc
+autoconf        faad2           gist            grc             jetty           libksba         lzo             openssl         postgis         redis           wemux
+automake        fdupes          git             gremlin         jmeter          libmpc          macvim          orientdb        postgresql      riak            wget
+bash            fftw            git-extras      growlnotify     jpeg            libspatialite   mad             ossp-uuid       proctools       rlwrap          wkhtmltopdf
+boost           flip            glances         gsl             jq              libtasn1        memcached       p11-kit         proj            s3cmd           wview
+brew-pip        freexl          glib            gtk+            json-c          libtiff         mmv             pango           protobuf        siege           xz
+cairo           gawk            gmp             hadoop          keychain        libtool         mobile-shell    pcre            pstree          sip
+cassandra       gd              gnu-sed         hbase           libao           libusb          mpfr            percona-toolkit pth             spatialindex
+clojure         gdal            gnupg           hdf5            libassuan       libusb-compat   mysql           phantomjs       pyqt            spidermonkey
+cmake           gdk-pixbuf      gnupg2          icu4c           libdvdcss       libxml2         neo4j           pianobar        qgis            sqlite
+colordiff       geos            gnuplot         imagemagick     libevent        libyaml         nettle          pidof           qt              ssed
+ctags           gettext         gnutls          imagesnap       libffi          little-cms      ngrep           pinentry        r               szip
