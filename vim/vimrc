@@ -20,6 +20,8 @@
 "     Show Tag Tree: <leader>l
 "  Paste:
 "     Pasting Unformatted: <F6>
+"  Git:
+"     Find Conflict Markers: <leader>cf
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -122,6 +124,9 @@
     let mapleader = ","
     let maplocalleader = "-"
 
+    " Find merge conflict markers
+    nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
     " ; is an alias for :
     nnoremap ; :
 
@@ -182,6 +187,13 @@
 
   " Disable the stupid pydoc preview window for the omni completion
   set completeopt-=preview
+
+  " automatically reload vimrc when it's saved
+  " au BufWritePost .vimrc so ~/.vimrc
+
+  " Use sane regexes
+  nnoremap / /\v
+  vnoremap / /\v
 
   " MouseSupport:
     " Enable mouse everywhere
