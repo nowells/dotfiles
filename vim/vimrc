@@ -41,6 +41,7 @@
 "  Python:
 "     GoTo Documentation For Keyword Under Cursor: K
 "     AutoPEP8: <leader>p
+"     Run Code: <leader>r
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
