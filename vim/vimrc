@@ -41,8 +41,15 @@
   filetype plugin indent on
 
 " GeneralSettings:
-  " No Vi Compatibility. That just sucks.
+  " Gets rid of all the crap that Vim does to be vi compatible. It’s 2010 — we
+  " don’t need to be compatible with vi at the expense of functionality any
+  " more.
   set nocompatible
+
+  " The modelines bit prevents some security exploits having to do with
+  " modelines in files. I never use modelines so I don’t miss any
+  " functionality here.
+  set modelines=0
 
   " Fix backspace indentation
   set backspace=indent,eol,start
@@ -67,8 +74,9 @@
     " Make tab completion for files/buffers act like bash
     set wildmenu
     " use emacs-style tab completion when selecting files, etc
-    set wildmode=longest,list
-    "set wildmode=list:full
+    " set wildmode=longest,list
+    " set wildmode=list:full
+    set wildmode=list:longest
     set wildignore=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class
 
   " Make searches case-sensitive only if they contain upper-case characters
@@ -122,10 +130,14 @@
   " The PC is fast enough, do syntax highlight syncing from start
   autocmd BufEnter * :syntax sync fromstart
 
+  " Auto Save on lost focus
+  au FocusLost * :wa
+
   " Remember cursor position
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
   " utf-8 default encoding
+  set encoding=utf-8
   set enc=utf-8
 
   " KeyBindings:
@@ -192,10 +204,16 @@
     set shiftwidth=2
     set softtabstop=2
     set autoindent
-    " set smartindent
 
-  " Activate a permanent ruler
-  set ruler
+  " General Betterment:
+    " Activate a permanent ruler
+    set ruler
+    set relativenumber
+    set undofile
+    set cursorline
+    set visualbell
+    set hidden
+    set showcmd
 
   " Disable the stupid pydoc preview window for the omni completion
   set completeopt-=preview
