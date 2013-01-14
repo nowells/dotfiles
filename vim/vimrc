@@ -22,6 +22,15 @@
 "     Pasting Unformatted: <F6>
 "  Git:
 "     Find Conflict Markers: <leader>cf
+"  Text Flow:
+"     Reflow To OneLine: J
+"  YankRing:
+"     Show Paste Buffer: <leader>y
+"  Windows Management:
+"     Vertical Split: <leader>v
+"     Horizontal Split: <leader>h
+"  General:
+"     Remove Trailing Whitespace: <leader>W
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -127,6 +136,9 @@
     " Find merge conflict markers
     nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
+    " Remove trailing whitespace
+    nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
     " ; is an alias for :
     nnoremap ; :
 
@@ -149,16 +161,16 @@
     vnoremap <down> <nop>
     inoremap <up> <nop>
     inoremap <down> <nop>
-    
+
     " Hide search matches on <leader>space
     nnoremap <leader><space> :nohlsearch<cr>
-    
+
     " Remove trailing whitespace on <leader>S
     nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>"
 
     " Split window management
-    nnoremap <leader>w <C-w>v<C-w>l
-    nnoremap <leader>W <C-w>s
+    nnoremap <leader>v <C-w>v<C-w>l
+    nnoremap <leader>h <C-w>s
 
     " Easy heading creation with RestructuredText
     map <leader>=  yypVr
@@ -182,7 +194,7 @@
     set autoindent
     " set smartindent
 
-  " Activate a permanent ruler 
+  " Activate a permanent ruler
   set ruler
 
   " Disable the stupid pydoc preview window for the omni completion
@@ -340,3 +352,6 @@
 
       let @@ = reg_save
   endfunction
+
+" YankRing:
+  noremap <leader>y :YRShow<CR>
