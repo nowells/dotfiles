@@ -1,6 +1,8 @@
 " Sources:
 "   http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 "   http://mirnazim.org/writings/vim-plugins-i-use/
+" Install:
+"   easy_install flake8
 "
 " Commands:
 "  Gundo:
@@ -36,6 +38,9 @@
 "     Horizontal Split: <leader>h
 "  General:
 "     Remove Trailing Whitespace: <leader>W
+"  Python:
+"     GoTo Documentation For Keyword Under Cursor: K
+"     AutoPEP8: <leader>p
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -83,10 +88,6 @@
     " set wildmode=list:full
     set wildmode=list:longest
     set wildignore=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class
-
-  " Make searches case-sensitive only if they contain upper-case characters
-  set ignorecase
-  set smartcase
 
   " Enable automatic title setting for terminals
   set title
@@ -186,12 +187,10 @@
     inoremap <down> <nop>
 
     " makes j and k work the way you expect instead of working in some archaic
-    " movement by file line instead of screen line” fashion.
+    " movement by file line instead of screen line” fashion. Move down one
+    " disply line instead of one physical line
     nnoremap j gj
     nnoremap k gk
-
-    " Remove trailing whitespace on <leader>S
-    nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>"
 
     " Window Management:
       " Veritcal window split
@@ -212,6 +211,7 @@
     " Use sane regexes
     nnoremap / /\v
     vnoremap / /\v
+    " Make searches case-sensitive only if they contain upper-case characters
     set ignorecase
     set smartcase
     set gdefault
@@ -402,3 +402,40 @@
 
 " YankRing:
   noremap <leader>y :YRShow<CR>
+
+" PythonMode:
+  " Allow for quick autopep8
+  noremap <leader>p :PyLintAuto<CR>
+
+  " Disable Rope integration
+  let g:pymode_rope= 0
+
+  " Disable pymode's custom syntax highlighting
+  let g:pymode_syntax = 0
+
+  " Load pylint code plugin
+  let g:pymode_lint = 1
+
+  " Disable pylint checking every save
+  let g:pymode_lint_write = 0
+
+  " Load show documentation plugin
+  let g:pymode_doc = 1
+
+  " Key for show python documentation
+  let g:pymode_doc_key = 'K'
+
+  " Load run code plugin
+  let g:pymode_run = 1
+
+  " Key for run python code
+  let g:pymode_run_key = '<leader>r'
+
+  " Enable python folding
+  let g:pymode_folding = 1
+
+  " Enable python objects and motion
+  let g:pymode_motion = 1
+
+  " Auto fix vim python paths if virtualenv enabled
+  let g:pymode_virtualenv = 1
