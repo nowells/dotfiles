@@ -4,7 +4,7 @@
 "   http://sontek.net/blog/detail/turning-vim-into-a-modern-python-ide
 "   http://learnvimscriptthehardway.stevelosh.com/
 " Install:
-"   easy_install flake8 autopep8
+"   easy_install flake8 autopep8 rope
 "
 " Commands:
 "  Gundo:
