@@ -1,8 +1,9 @@
 " Sources:
 "   http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 "   http://mirnazim.org/writings/vim-plugins-i-use/
+"   http://learnvimscriptthehardway.stevelosh.com/
 " Install:
-"   easy_install flake8
+"   easy_install flake8 autopep8
 "
 " Commands:
 "  Gundo:
