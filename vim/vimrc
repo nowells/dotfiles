@@ -1,6 +1,7 @@
 " Sources:
 "   http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 "   http://mirnazim.org/writings/vim-plugins-i-use/
+"   http://sontek.net/blog/detail/turning-vim-into-a-modern-python-ide
 "   http://learnvimscriptthehardway.stevelosh.com/
 " Install:
 "   easy_install flake8 autopep8
@@ -256,9 +257,6 @@
     set hidden
     set showcmd
 
-  " Disable the stupid pydoc preview window for the omni completion
-  set completeopt-=preview
-
   " MouseSupport:
     " Enable mouse everywhere
     set mouse=a
@@ -327,6 +325,11 @@
 "   https://github.com/ervandew/supertab
 "   Configure SuperTab that is an enhanced version of OmniComplete. This configuration should happen below all OmniComplete configurations
   let g:SuperTabDefaultCompletionType = "context"
+
+  " Autoclose OmniComplete preview window on selection
+  let g:SuperTabClosePreviewOnPopupClose = 1
+  " Disable the pydoc preview window for the omni completion
+  "set completeopt-=preview
 
 " TagBar:
 "   https://github.com/majutsushi/tagbar
@@ -412,7 +415,7 @@
   noremap <leader>p :PyLintAuto<CR>
 
   " Disable Rope integration
-  let g:pymode_rope= 0
+  let g:pymode_rope= 1
 
   " Disable pymode's custom syntax highlighting
   let g:pymode_syntax = 0
