@@ -43,6 +43,8 @@
 "     GoTo Documentation For Keyword Under Cursor: K
 "     AutoPEP8: <leader>p
 "     Run Code: <leader>r
+"  MiniBufExplorer:
+"     Show: <leader>b
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -441,3 +443,16 @@
 
   " Auto fix vim python paths if virtualenv enabled
   let g:pymode_virtualenv = 1
+
+" Minibufexpl
+  " Map a good default key
+  map <Leader>b :MiniBufExplorer<cr>
+
+  " We use TagList so enable this
+  let g:miniBufExplModSelTarget = 1
+
+  " Disable Duplicate Buffer Name Checks for performance
+  let g:miniBufExplCheckDupeBufs = 0
+
+  " Only let it get 3 lines long
+  let g:miniBufExplMaxSize = 5
