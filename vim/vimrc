@@ -468,7 +468,7 @@
   let g:miniBufExplMaxSize = 5
 
 " PyTest
-  Execute the tests
+  " Execute the tests
   nmap <silent><Leader>tf <Esc>:Pytest file<CR>
   nmap <silent><Leader>tc <Esc>:Pytest class<CR>
   nmap <silent><Leader>tm <Esc>:Pytest method<CR>
