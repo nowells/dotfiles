@@ -1,3 +1,7 @@
+" Sources:
+"   http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"   http://mirnazim.org/writings/vim-plugins-i-use/
+"
 " Commands:
 "  Gundo:
 "     Graphical Undo: <leader>u
@@ -174,8 +178,10 @@
     inoremap <up> <nop>
     inoremap <down> <nop>
 
-    " Hide search matches on <leader>space
-    nnoremap <leader><space> :nohlsearch<cr>
+    " makes j and k work the way you expect instead of working in some archaic
+    " movement by file line instead of screen line” fashion.
+    nnoremap j gj
+    nnoremap k gk
 
     " Remove trailing whitespace on <leader>S
     nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>"
@@ -194,9 +200,27 @@
     nnoremap <F6> :set paste!<cr>
 
   " Search:
-    set hlsearch
+    " Use sane regexes
+    nnoremap / /\v
+    vnoremap / /\v
+    set ignorecase
+    set smartcase
+    set gdefault
     set incsearch
     set showmatch
+    set hlsearch
+    " Hide search matches on <leader>space
+    nnoremap <leader><space> :noh<cr>
+
+  " Line Wrapping:
+    set wrap
+    set textwidth=79
+    set formatoptions=qrn1
+    set colorcolumn=80
+
+  " Show Invisible Characters
+    " set list
+    " set listchars=tab:▸\ ,eol:¬
 
   " IndentationRules:
     set expandtab
@@ -208,7 +232,11 @@
   " General Betterment:
     " Activate a permanent ruler
     set ruler
-    set relativenumber
+    " set relativenumber changes Vim’s line number column to display how far away each line is
+    " from the current one, instead of showing the absolute line number.
+    " The inverse is `set number`
+    " set relativenumber
+    set number
     set undofile
     set cursorline
     set visualbell
@@ -217,13 +245,6 @@
 
   " Disable the stupid pydoc preview window for the omni completion
   set completeopt-=preview
-
-  " automatically reload vimrc when it's saved
-  " au BufWritePost .vimrc so ~/.vimrc
-
-  " Use sane regexes
-  nnoremap / /\v
-  vnoremap / /\v
 
   " MouseSupport:
     " Enable mouse everywhere
@@ -321,7 +342,6 @@
   set statusline=[%l,%v\ %P%M][CWD:\ %{CWD()}][FILE:\ %f]\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*
   set showcmd
   set showmode
-  set number
 
   function! CWD()
     let curdir = substitute(getcwd(), '/Users/nstrite', "~", "g")
