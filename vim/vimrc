@@ -47,6 +47,7 @@
 "  MiniBufExplorer:
 "     Show: <leader>b
 "  PyTest:
+"     Test File: <leader>t
 "     Test File: <leader>tf
 "     Test Class: <leader>tc
 "     Test Method: <leader>tm
@@ -469,6 +470,7 @@
 
 " PyTest
   " Execute the tests
+  nmap <silent><Leader>t <Esc>:Pytest file<CR>
   nmap <silent><Leader>tf <Esc>:Pytest file<CR>
   nmap <silent><Leader>tc <Esc>:Pytest class<CR>
   nmap <silent><Leader>tm <Esc>:Pytest method<CR>
