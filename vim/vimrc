@@ -54,6 +54,8 @@
 "     Next Test: <leader>tn
 "     Previous Test: <leader>tp
 "     Error Tests: <leader>te
+"  Markdown:
+"     Insert Header: <leader>=
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
