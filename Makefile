@@ -11,6 +11,7 @@ install-python:
 	ln -s `pwd`/python/pythonrc ~/.pythonrc
 
 install-vim:
+	git submodule init && git submodule update
 	rm -rf ~/.vim ~/.vimrc
 	ln -s `pwd`/vim ~/.vim
 	ln -s ~/.vim/vimrc ~/.vimrc
