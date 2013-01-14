@@ -8,3 +8,4 @@ vssver.scc
 ve/
 pip-log.txt
 build/
+.ropeproject/

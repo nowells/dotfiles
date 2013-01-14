@@ -46,6 +46,13 @@
 "     Run Code: <leader>r
 "  MiniBufExplorer:
 "     Show: <leader>b
+"  PyTest:
+"     Test File: <leader>tf
+"     Test Class: <leader>tc
+"     Test Method: <leader>tm
+"     Next Test: <leader>tn
+"     Previous Test: <leader>tp
+"     Error Tests: <leader>te
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -459,3 +466,13 @@
 
   " Only let it get 3 lines long
   let g:miniBufExplMaxSize = 5
+
+" PyTest
+  Execute the tests
+  nmap <silent><Leader>tf <Esc>:Pytest file<CR>
+  nmap <silent><Leader>tc <Esc>:Pytest class<CR>
+  nmap <silent><Leader>tm <Esc>:Pytest method<CR>
+  " cycle through test errors
+  nmap <silent><Leader>tn <Esc>:Pytest next<CR>
+  nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
+  nmap <silent><Leader>te <Esc>:Pytest error<CR>"
