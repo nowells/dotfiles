@@ -10,7 +10,7 @@
 "  Gundo:
 "     Graphical Undo: <leader>u
 "  OmniComplete:
-"     Code Completion: <c-x><c-o>
+"     Code Completion: <c-x><c-o> OR <tab>
 "  CTags:
 "     Jump To Tag Definition: <c-]>
 "     Jump Back To Code Use: <c-t>
@@ -105,11 +105,6 @@
     " set wildmode=list:full
     set wildmode=list:longest
     set wildignore=*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif,*$py.class,*.class
-
-  " Enable automatic title setting for terminals
-  set title
-  set titleold="Terminal"
-  set titlestring=%F\ -\ Vim
 
   " Convince Vim it can use 256 colors inside Gnome Terminal.
   " Needs CSApprox plugin
@@ -280,7 +275,7 @@
   nnoremap <Space> za
   onoremap <Space> <C-C>za
   vnoremap <Space> zf
-  "au BufNewFile,BufRead *.html map <leader>ft Vatzf
+  au BufNewFile,BufRead *.html map <leader>ft Vatzf
 
   function! MyFoldText()
       let line = getline(v:foldstart)
@@ -316,10 +311,10 @@
   let g:ctrlp_working_path_mode = 'ra'
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux"
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn)|coverage|vendor)$',
-    \ 'file': '\v\.(exe|so|dll)$',
-    \ 'link': '\v[\/](ve)$',
-    \ }
+        \ 'dir':  '\v[\/](\.(git|hg|svn)|coverage|vendor)$',
+        \ 'file': '\v\.(exe|so|dll)$',
+        \ 'link': '\v[\/](ve)$',
+        \ }
 
 " CloseTag:
 "   https://github.com/docunext/closetag.vim
@@ -362,7 +357,6 @@
   set cmdheight=2
   set laststatus=2
   set statusline=[%l,%v\ %P%M][CWD:\ %{CWD()}][FILE:\ %f]\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*
-  set showcmd
   set showmode
 
   function! CWD()
