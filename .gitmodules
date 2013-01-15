@@ -52,3 +52,6 @@
 [submodule "vim/bundle/pytest"]
 	path = vim/bundle/pytest
 	url = https://github.com/alfredodeza/pytest.vim.git
+[submodule "vim/bundle/dwm"]
+	path = vim/bundle/dwm
+	url = https://github.com/spolu/dwm.vim.git

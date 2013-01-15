@@ -79,8 +79,10 @@
   " Fix backspace indentation
   set backspace=indent,eol,start
 
-  " Ensure that when MacVim exists focus is returned to the terminal
-  au VimLeave * maca hide:
+  if has("gui_running")
+    " Ensure that when MacVim exists focus is returned to the terminal
+    au VimLeave * maca hide:
+  endif
 
   " Ensure that in terminals the redraw method better supports large paste
   " operations
@@ -206,12 +208,6 @@
     " disply line instead of one physical line
     nnoremap j gj
     nnoremap k gk
-
-    " Window Management:
-      " Veritcal window split
-      nnoremap <leader>v <C-w>v<C-w>l
-      " Horizonal window split
-      nnoremap <leader>h <C-w>s
 
     " Easy heading creation with RestructuredText
     map <leader>=  yypVr

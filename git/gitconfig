@@ -58,7 +58,7 @@ autosetupmerge = always
 
 [core]
 excludesfile = ~/.gitignore
-editor = vim
+editor = "vim --cmd 'let g:pymode=0'"
 whitespace = fix
 #pager = tig
 #autocrlf = true
