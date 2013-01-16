@@ -2,9 +2,8 @@
 # This hook is run after a new virtualenv is activated.
 
 ln -sfn `pwd` $VIRTUAL_ENV/project_symlink
-ln -sfn "$VIRTUAL_ENV" "`readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`/ve"
+ln -sfn "$VIRTUAL_ENV" "`pwd`/ve"
 
-echo "cd `readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`" >> $VIRTUAL_ENV/bin/postactivate
-echo 'ln -sfn "$VIRTUAL_ENV" "`readlink $VIRTUAL_ENV/project_symlink 2> /dev/null`/ve"' >> $VIRTUAL_ENV/bin/postactivate
+echo "cd `readlink $VIRTUAL_ENV/project_symlink`" >> $VIRTUAL_ENV/bin/postactivate
 
 pip install ipdb
