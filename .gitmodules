@@ -55,9 +55,3 @@
 [submodule "vim/bundle/dwm"]
 	path = vim/bundle/dwm
 	url = https://github.com/spolu/dwm.vim.git
-[submodule "vim/bundle/makegreen"]
-	path = vim/bundle/makegreen
-	url = https://github.com/reinh/vim-makegreen.git
-[submodule "vim/bundle/nose"]
-	path = vim/bundle/nose
-	url = https://github.com/lambdalisue/nose.vim.git
