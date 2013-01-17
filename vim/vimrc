@@ -5,6 +5,7 @@
 "   http://learnvimscriptthehardway.stevelosh.com/
 " Install:
 "   easy_install flake8 autopep8 rope pytest
+"   brew install rhino
 "
 " Commands:
 "  Gundo:
