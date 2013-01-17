@@ -50,12 +50,14 @@ $ "
 
     # Mapnik
     if [ `id -u` != '0' ]; then
-        export VIRTUALENV_USE_DISTRIBUTE=1
-        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
         export WORKON_HOME=$HOME/.virtualenvs
-        source /usr/local/bin/virtualenvwrapper.sh
+        export PROJECT_HOME=$HOME/projects
         export PIP_VIRTUALENV_BASE=$WORKON_HOME
         export PIP_RESPECT_VIRTUALENV=true
+        export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+        export VIRTUALENV_USE_DISTRIBUTE=1
+        #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+        source /usr/local/bin/virtualenvwrapper.sh
     fi
 
     # Aliases

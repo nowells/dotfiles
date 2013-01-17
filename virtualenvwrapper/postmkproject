@@ -1,3 +1,4 @@
 #!/bin/bash
 # This hook is run after a new project is activated.
 
+ln -sfn "$VIRTUAL_ENV" "$PROJECT_HOME/`basename $VIRTUAL_ENV`/.ve"

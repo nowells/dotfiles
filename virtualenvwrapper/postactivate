@@ -3,4 +3,3 @@
 
 PS1="$NOWELLS_BASEPROMPT \033[37mworkon \033[31m\$(basename '${VIRTUAL_ENV}')\033[00m
 $ "
-cd `readlink $VIRTUAL_ENV/project_symlink`

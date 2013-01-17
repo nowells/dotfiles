@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ -h "ve" && -d "ve" ]]; then
-    VE_DIR="`readlink ve 2>/dev/null`"
+if [[ -h ".ve" && -d ".ve" ]]; then
+    VE_DIR="`readlink .ve 2>/dev/null`"
     VE_NAME="`basename $VE_DIR 2>/dev/null`"
     if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
         #workon $VE_NAME
