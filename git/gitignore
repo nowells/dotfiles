@@ -9,3 +9,4 @@ vssver.scc
 pip-log.txt
 build/
 .ropeproject/
+node_modules/

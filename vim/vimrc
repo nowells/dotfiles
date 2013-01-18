@@ -4,7 +4,7 @@
 "   http://sontek.net/blog/detail/turning-vim-into-a-modern-python-ide
 "   http://learnvimscriptthehardway.stevelosh.com/
 " Install:
-"   easy_install flake8 autopep8 rope pytest
+"   easy_install flake8 autopep8 rope pytest http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 "   brew install rhino
 "
 " Commands:
@@ -45,6 +45,8 @@
 "     GoTo Documentation For Keyword Under Cursor: K
 "     AutoPEP8: <leader>p
 "     Run Code: <leader>r
+"  Javascript:
+"     AutoLint: <leader>p
 "  MiniBufExplorer:
 "     Show: <leader>b
 "  PyTest:
@@ -426,7 +428,7 @@
 
 " PythonMode:
   " Allow for quick autopep8
-  noremap <leader>p :PyLintAuto<CR>
+  autocmd FileType python noremap <leader>p :PyLintAuto<CR>
 
   " Disable Rope integration
   let g:pymode_rope= 1
@@ -484,3 +486,12 @@
   nmap <silent><Leader>tn <Esc>:Pytest next<CR>
   nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
   nmap <silent><Leader>te <Esc>:Pytest error<CR>"
+
+" Javascript:
+  function! FixJS()
+    setlocal autoread
+    "execute('!fixjsstyle --strict --nojsdoc %')
+    execute('!fixjsstyle --strict  %')
+    redraw!
+  endfunction
+  autocmd FileType javascript noremap <leader>p :silent! call FixJS()<CR>
