@@ -3,6 +3,7 @@
 "   http://mirnazim.org/writings/vim-plugins-i-use/
 "   http://sontek.net/blog/detail/turning-vim-into-a-modern-python-ide
 "   http://learnvimscriptthehardway.stevelosh.com/
+"   https://github.com/Lokaltog/powerline
 " Install:
 "   easy_install flake8 autopep8 rope pytest http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 "   brew install rhino tidy
@@ -436,16 +437,16 @@
   " Allow for quick autopep8
   autocmd FileType python noremap <leader>p :PyLintAuto<CR>
 
-  " Disable Rope integration
+  " Enable Rope integration
   let g:pymode_rope= 1
 
-  " Disable pymode's custom syntax highlighting
-  let g:pymode_syntax = 0
+  " Enable pymode's custom syntax highlighting
+  let g:pymode_syntax = 1
 
   " Load pylint code plugin
   let g:pymode_lint = 1
 
-  " Disable pylint checking every save
+  " Enable pylint checking every save
   let g:pymode_lint_write = 0
 
   " Load show documentation plugin
@@ -503,7 +504,7 @@
   autocmd FileType javascript noremap <leader>p :silent! call FixJS()<CR>
 
 " HTML:
-  autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako noremap <leader>p :%!tidy -q -i --show-errors 0<CR>
+  " autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako noremap <leader>p :%!tidy -q -i --show-errors 0<CR>
 
 " Tabular:
   inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -523,3 +524,11 @@
   vnoremap <leader>a= :Tabularize /=<CR>
   nnoremap <leader>a: :Tabularize /:\zs<CR>
   vnoremap <leader>a: :Tabularize /:\zs<CR>
+
+" JSBeautify:
+  " JS
+  " autocmd FileType javascript noremap <buffer> <leader>p :call JsBeautify()<cr>
+  " HTML
+  autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako noremap <buffer> <leader>p :call HtmlBeautify()<cr>
+  " CSS
+  autocmd FileType css noremap <buffer> <leader>p :call CSSBeautify()<cr>

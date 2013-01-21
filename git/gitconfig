@@ -38,7 +38,8 @@ releases = log --tags --simplify-by-decoration --pretty='format:%ad | %d'
 l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 graveyard = !sh -c 'git push graveyard origin/$0:refs/heads/$0 && git push origin $0 --delete'
 icebox = !sh -c 'git push graveyard origin/$0:refs/heads/icebox/$0 && git push origin $0 --delete'
-	ctags = !.git/hooks/ctags
+ctags = !.git/hooks/ctags
+submod = submodule update --init --recursive
 
 [color]
 diff = auto
