@@ -5,7 +5,7 @@
 .bak/
 vssver.scc
 .svn/
-.ve/
+.ve
 pip-log.txt
 build/
 .ropeproject/
