@@ -7,6 +7,7 @@
 " Install:
 "   easy_install flake8 autopep8 rope pytest http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 "   brew install rhino tidy
+"   pip install git+git://github.com/Lokaltog/powerline
 "
 " Commands:
 "  Gundo:
@@ -533,3 +534,7 @@
   autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako noremap <buffer> <leader>p :call HtmlBeautify()<cr>
   " CSS
   autocmd FileType css noremap <buffer> <leader>p :call CSSBeautify()<cr>
+
+" Powerline:
+  " python from powerline.bindings.vim import source_plugin; source_plugin()
+  source ~/.powerline/powerline/bindings/vim/plugin/source_plugin.vim

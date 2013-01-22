@@ -118,8 +118,6 @@ in \[$FGG\]\w\[$FGOFF\] \
     export PATH=$PATH:/usr/local/mysql/bin
     export IGNOREEOF=1
     export PYTHONDONTWRITEBYTECODE=1
-    export PIP_DOWNLOAD_CACHE=~/tmp/pip
-    export PIP_REQUIRE_VIRTUALENV=true
     export LESS=FRSX
 
     #export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/
@@ -127,10 +125,11 @@ in \[$FGG\]\w\[$FGOFF\] \
     export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/
     export PATH=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin:$PATH
 
-    # Mapnik
     if [ `id -u` != '0' ]; then
         export WORKON_HOME=$HOME/.virtualenvs
         export PROJECT_HOME=$HOME/projects
+        export PIP_DOWNLOAD_CACHE=~/tmp/pip
+        export PIP_REQUIRE_VIRTUALENV=true
         export PIP_VIRTUALENV_BASE=$WORKON_HOME
         export PIP_RESPECT_VIRTUALENV=true
         export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'

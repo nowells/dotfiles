@@ -1,6 +1,6 @@
 install: install-vim install-bash install-virtualenvwrapper \
          install-terminal-settings install-tmux install-git \
-				 install-python install-rvm
+				 install-python install-rvm install-powerline
 
 install-rvm:
 	rm -f ~/.rvmrc
@@ -9,6 +9,11 @@ install-rvm:
 install-python:
 	rm -f ~/.pythonrc
 	ln -s `pwd`/python/pythonrc ~/.pythonrc
+
+install-powerline:
+	git submodule update --init --recursive
+	rm -rf ~/.powerline
+	ln -s `pwd`/powerline ~/.powerline
 
 install-vim:
 	git submodule update --init --recursive
