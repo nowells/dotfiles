@@ -536,5 +536,7 @@
   autocmd FileType css noremap <buffer> <leader>p :call CSSBeautify()<cr>
 
 " Powerline:
-  " python from powerline.bindings.vim import source_plugin; source_plugin()
-  source ~/.powerline/powerline/bindings/vim/plugin/source_plugin.vim
+  if has('python')
+    " python from powerline.bindings.vim import source_plugin; source_plugin()
+    source ~/.powerline/powerline/bindings/vim/plugin/source_plugin.vim
+  endif
