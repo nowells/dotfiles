@@ -141,6 +141,7 @@
     if has("gui_running")
       set guifont=Mensch\ 10
     endif
+    set guifont=Inconsolata:h11
 
     " Solarized:
     "   https://github.com/altercation/vim-colors-solarized
