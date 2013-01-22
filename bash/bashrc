@@ -1,34 +1,92 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]] ; then
+    Color_Off="\033[0m"
+    Red="\033[0;31m"
+    Green="\033[0;32m"
+    Yellow="\033[0;33m"
+    Blue="\033[0;34m"
+    Purple="\033[0;35m"
+    Gray="\033[0;37m"
+
+    # set up command prompt
+    function __prompt_command()
+    {
+        # capture the exit status of the last command
+        EXIT="$?"
+        PS1="\n"
+
+        if [[ -h ".ve" && -d ".ve" ]]; then
+            VE_DIR="`readlink .ve 2>/dev/null`"
+            VE_NAME="`basename $VE_DIR 2>/dev/null`"
+            if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
+                #workon $VE_NAME
+                printf "\n${Red}Warning!!! ${Color_Off}You are inside of a virtualenv.\n"
+                printf "Please run ${Green}workon ${VE_NAME}${Color_Off}\n"
+            fi
+        fi
+
+        # Provide feedback if we are not currently working within the selected VIRTUAL_ENV
+        if [[ -ne "$VIRTUAL_ENV" ]]; then
+            PROJECT_DIR="`cat $VIRTUAL_ENV/.project 2> /dev/null`"
+            CURRENT_DIR="`pwd`"
+            if [[ -ne "$PROJECT_DIR" ]]; then
+                if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
+                    printf "\n${Red}`basename $VIRTUAL_ENV`${Color_Off} is currently active.\n"
+                    printf "Please run ${Green}deactivate ${Color_Off}or return to ${Purple}${PROJECT_DIR}${Color_Off}\n"
+                fi
+            fi
+        fi
+
+        if [[ "$BASE_TERM" == "screen-256color" ]]; then
+            # Setup prompt title name for screen session tab naming.
+            PROMPT_TITLE='shell'
+            if [[ -ne "$VIRTUAL_ENV" ]]; then
+                PROMPT_TITLE=`basename $VIRTUAL_ENV`
+            else
+                DIR=$PWD
+                LASTDIR=""
+                until [[ $LASTDIR = $DIR ]]; do
+                    if [ -f $DIR/.git/HEAD ]; then
+                        PROMPT_TITLE=$(basename $DIR)
+                        break
+                    fi
+                    if [ -f $DIR/.hg/branch ]; then
+                        PROMPT_TITLE=$(basename $DIR)
+                        break
+                    fi
+                    LASTDIR=$DIR
+                    DIR=$(dirname $DIR)
+                done
+            fi
+            #echo -ne "\ek$PROMPT_TITLE\e\\"
+            echo -ne '\033k'$PROMPT_TITLE'\033\\'
+        fi
+
+        if [ $EXIT -eq 0 ]; then PS1+="\[$Green\][\!]\[$Color_Off\] "; else PS1+="\[$Red\][\!]\[$Color_Off\] "; fi
+
+        # if logged in via ssh shows the ip of the client
+        if [ -n "$SSH_CLIENT" ]; then PS1+="\[$Yellow\]("${$SSH_CLIENT%% *}")\[$Color_Off\]"; fi
+
+        vcprompt() {
+          ~/bin/vcprompt -f $'on %n:%b'
+        }
+
+        # basic information (user@host:path)
+        PS1+="\[$Purple\]\u\[$Color_Off\] \
+at \[$Yellow\]\h\[$Color_Off\] \
+in \[$Green\]\w\[$Color_Off\] \
+\[$Purple\]$(vcprompt)\[$Color_Off\]\
+\[$Yellow\] $(~/.rvm/bin/rvm-prompt i v p g)\[$Color_Off\]"
+
+        if [ -n "$VE_NAME" ]; then PS1+=" workon \[$Red\]$VE_NAME\[$Color_Off\]"; fi
+
+        # prompt $ or # for root
+        PS1+="\n\$ "
+    }
+    PROMPT_COMMAND=__prompt_command
+
     export EDITOR=vim
     export ARCHFLAGS="-arch x86_64"
-    export NOWELLS_DEFAULT_COLOR="[00m"
-    export NOWELLS_GRAY_COLOR="[37m"
-    export NOWELLS_PINK_COLOR="[35m"
-    export NOWELLS_GREEN_COLOR="[32m"
-    export NOWELLS_BLUE_COLOR="[34m"
-    export NOWELLS_ORANGE_COLOR="[33m"
-    export NOWELLS_RED_COLOR="[31m"
-    if [ `id -u` == '0' ]; then
-        export NOWELLS_USER_COLOR=$NOWELLS_RED_COLOR
-    else
-        export NOWELLS_USER_COLOR=$NOWELLS_PINK_COLOR
-    fi
-    NOWELLS_VCPROMPT_EXECUTABLE=~/bin/vcprompt
-
-    nowells_vcprompt() {
-      $NOWELLS_VCPROMPT_EXECUTABLE -f $'on %n:%b'
-    }
-
-    export NOWELLS_BASEPROMPT='\n\e${NOWELLS_USER_COLOR}\u \
-\e${NOWELLS_GRAY_COLOR}at \e${NOWELLS_ORANGE_COLOR}\h \
-\e${NOWELLS_GRAY_COLOR}in \e${NOWELLS_GREEN_COLOR}\w\
-\e${NOWELLS_USER_COLOR} $(nowells_vcprompt)\
-\e${NOWELLS_ORANGE_COLOR} $(~/.rvm/bin/rvm-prompt i v p g)\
-\e${NOWELLS_DEFAULT_COLOR}'
-    export PS1="${NOWELLS_BASEPROMPT}
-$ "
-    export PROMPT_COMMAND="~/.bashrc.d/prompt_command"
 
     export BASE_TERM=$TERM
     export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
