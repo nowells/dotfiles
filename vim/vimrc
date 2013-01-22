@@ -139,8 +139,6 @@
     syntax on
     if has("gui_running")
       set guifont=Mensch\ 10
-    else
-      colorscheme mustang
     endif
 
     " Solarized:
@@ -152,7 +150,10 @@
     let g:solarized_termcolors=256
     let g:solarized_contrast="high"
     let g:solarized_visibility="high"
-    colorscheme solarized
+
+    "colorscheme solarized
+    "colorscheme mustang
+    colorscheme molokai
 
   " The PC is fast enough, do syntax highlight syncing from start
   autocmd BufEnter * :syntax sync fromstart
