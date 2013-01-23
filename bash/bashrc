@@ -143,8 +143,6 @@ in \[$FGG\]\w\[$FGOFF\] \
     alias emacs='echo "You are trying to learn vi... type \`vi\` instead."'
     alias em="emacs"
     alias ll="ls -alh"
-    alias vi="/Applications/MacVim.app/Contents/MacOS/vim"
-    alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
     alias wget="wget --no-check-certificate"
     alias tmux="TERM=screen-256color-bce tmux"
     alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"

@@ -8,6 +8,7 @@
 "   easy_install flake8 autopep8 rope pytest http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 "   brew install rhino tidy
 "   pip install git+git://github.com/Lokaltog/powerline
+"   easy_install pygit2 mercurial psutil
 "
 " Commands:
 "  Gundo:
@@ -141,7 +142,7 @@
     if has("gui_running")
       set guifont=Mensch\ 10
     endif
-    set guifont=Inconsolata:h11
+    set guifont=Inconsolata\ for\ Powerline:h14
 
     " Solarized:
     "   https://github.com/altercation/vim-colors-solarized
