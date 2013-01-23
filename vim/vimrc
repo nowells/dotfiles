@@ -381,7 +381,7 @@
 "   https://github.com/scrooloose/syntastic
   " Make the command line two lines high and change the statusline display to
   " something that looks useful.
-  set cmdheight=2
+  set cmdheight=1
   set laststatus=2
   set statusline=[%l,%v\ %P%M][CWD:\ %{CWD()}][FILE:\ %f]\ %r%h%w\ (%{&ff})\ %{fugitive#statusline()}\ %#warningmsg#%{SyntasticStatuslineFlag()}%*
   set showmode
