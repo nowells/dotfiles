@@ -66,7 +66,10 @@
 "     Align Variables On Equals: <leader>a=
 "     Align Variables On Colons: <leader>a:
 "  Surround:
-"     Change Surrounding " to ': cs"'
+"     Change Surroundin: " to ': cs"'
+"  EasyMotion:
+"     Jump To Word: <leader><leader>w
+"     Jump To Line: <leader><leader>j
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
