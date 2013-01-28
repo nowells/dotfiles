@@ -1,6 +1,15 @@
 install: install-vim install-bash install-virtualenvwrapper \
          install-terminal-settings install-tmux install-git \
-				 install-python install-rvm install-powerline
+				 install-python install-rvm install-powerline install-ipython \
+				 install-config
+
+install-config:
+	rm -rf ~/.config
+	ln -s `pwd`/config ~/.config
+
+install-ipython:
+	rm -rf ~/.ipython
+	ln -s `pwd`/ipython ~/.ipython
 
 install-rvm:
 	rm -f ~/.rvmrc
