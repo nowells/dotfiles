@@ -23,7 +23,7 @@
 		},
 		"shell": {
 			"colorscheme": "default",
-			"theme": "default"
+			"theme": "custom"
 		},
 		"tmux": {
 			"colorscheme": "default",

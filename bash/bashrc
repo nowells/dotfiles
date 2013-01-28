@@ -1,5 +1,7 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]] ; then
+    export PATH=~/.powerline/scripts:$PATH
+
     FGOFF="\033[0m"
     # Foreground
     FGK="\033[0;30m" # Black
@@ -34,7 +36,7 @@ if [[ -n "$PS1" ]] ; then
     {
         # capture the exit status of the last command
         EXIT="$?"
-        PS1="\n"
+        STUPID_PS1="\n"
 
         if [[ -h ".ve" && -d ".ve" ]]; then
             VE_DIR="`readlink .ve 2>/dev/null`"
@@ -83,26 +85,30 @@ if [[ -n "$PS1" ]] ; then
             echo -ne '\033k'$PROMPT_TITLE'\033\\'
         fi
 
-        if [ $EXIT -eq 0 ]; then PS1+="\[$FGG\][\!]\[$FGOFF\] "; else PS1+="\[$FGR\][\!]\[$FGOFF\] "; fi
+        if [ $EXIT -eq 0 ]; then STUPID_PS1+="\[$FGG\][\!]\[$FGOFF\] "; else STUPID_PS1+="\[$FGR\][\!]\[$FGOFF\] "; fi
 
         # if logged in via ssh shows the ip of the client
-        if [ -n "$SSH_CLIENT" ]; then PS1+="\[$FGY\]("${$SSH_CLIENT%% *}")\[$FGOFF\]"; fi
+        if [ -n "$SSH_CLIENT" ]; then STUPID_PS1+="\[$FGY\]("${$SSH_CLIENT%% *}")\[$FGOFF\]"; fi
 
         vcprompt() {
           ~/bin/vcprompt -f $'on %n:%b'
         }
 
         # basic information (user@host:path)
-        PS1+="\[$FGM\]\u\[$FGOFF\] \
+        STUPID_PS1+="\[$FGM\]\u\[$FGOFF\] \
 at \[$FGY\]\h\[$FGOFF\] \
 in \[$FGG\]\w\[$FGOFF\] \
 \[$EFGM\]$(vcprompt)\[$FGOFF\]\
 \[$FGY\] $(~/.rvm/bin/rvm-prompt i v p g)\[$FGOFF\]"
 
-        if [ -n "$VE_NAME" ]; then PS1+=" workon \[$FGR\]$VE_NAME\[$FGOFF\]"; fi
+        if [ -n "$VE_NAME" ]; then STUPID_PS1+=" workon \[$FGR\]$VE_NAME\[$FGOFF\]"; fi
 
         # prompt $ or # for root
-        PS1+="\n\$ "
+        STUPID_PS1+="\n\$ "
+
+        AWESOME_PS1="\n$(powerline shell left --last_exit_code=$EXIT)\n$ "
+
+        PS1=$AWESOME_PS1
     }
     PROMPT_COMMAND=__prompt_command
 
@@ -221,8 +227,6 @@ in \[$FGG\]\w\[$FGOFF\] \
     export LC_NUMERIC="en_US.UTF-8"
     export LC_TIME="en_US.UTF-8"
     export LC_ALL="en_US.UTF-8"
-
-    export PATH=~/.powerline/scripts:$PATH
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
