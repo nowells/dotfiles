@@ -9,6 +9,7 @@
 "   brew install rhino tidy
 "   pip install git+git://github.com/Lokaltog/powerline
 "   easy_install pygit2 mercurial psutil
+"   npm install -g csslint
 "
 " Commands:
 "  Gundo:
