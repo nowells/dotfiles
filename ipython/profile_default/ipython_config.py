@@ -146,7 +146,7 @@ c = get_config()
 # Use colors for displaying information about objects. Because this information
 # is passed through a pager (like 'less'), and some pagers get confused with
 # color codes, this capability can be turned off.
-# c.TerminalInteractiveShell.color_info = True
+c.TerminalInteractiveShell.color_info = True
 
 #
 # c.TerminalInteractiveShell.history_length = 10000
@@ -161,7 +161,7 @@ c = get_config()
 # c.TerminalInteractiveShell.colors = 'LightBG'
 
 # Autoindent IPython code entered interactively.
-# c.TerminalInteractiveShell.autoindent = True
+c.TerminalInteractiveShell.autoindent = True
 
 #
 # c.TerminalInteractiveShell.separate_in = '\n'
@@ -469,7 +469,7 @@ c = get_config()
 
 # Powerline
 powerline_path = os.path.expanduser('~/.powerline/')
-if os.path.exists(powerline_path):
+if False and os.path.exists(powerline_path):
     sys.path.append(powerline_path)
     c.InteractiveShellApp.extensions = [
         'powerline.bindings.ipython.post_0_11'
