@@ -59,6 +59,7 @@
 		"virtualenv": { "fg": "white", "bg": "mediumorange" },
 		"rvm": { "fg": "gray3", "bg": "brightyellow" },
 		"branch": { "fg": "white", "bg": "mediumgreen" },
+		"masterbranch": { "fg": "white", "bg": "brightred" },
 		"cwd": { "fg": "gray9", "bg": "gray4" },
 		"cwd:current_folder": { "fg": "gray10", "bg": "gray4", "attr": ["bold"] },
 		"cwd:divider": { "fg": "gray7", "bg": "gray4" },

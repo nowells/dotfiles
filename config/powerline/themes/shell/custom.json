@@ -13,6 +13,7 @@
 				"name": "user"
 			},
 			{
+				"module": "custompowerline.segments",
 				"name": "branch",
 				"before": " "
 			},
@@ -31,11 +32,6 @@
           "dir_shorten_len": 20
 				},
         "divider_highlight_group": "cwd:divider"
-			},
-			{
-				"module": "powerline.segments.shell",
-				"name": "last_pipe_status",
-				"highlight_group": "exit_fail"
 			},
 			{
 				"module": "powerline.segments.shell",
