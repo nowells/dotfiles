@@ -42,9 +42,9 @@ if [[ -n "$PS1" ]] ; then
             VE_DIR="`readlink .ve 2>/dev/null`"
             VE_NAME="`basename $VE_DIR 2>/dev/null`"
             if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
-                #workon $VE_NAME
-                printf "\n${FGR}Warning!!! ${FGOFF}You are inside of a virtualenv.\n"
-                printf "Please run ${FGG}workon ${VE_NAME}${FGOFF}\n"
+                workon $VE_NAME
+                #printf "\n${FGR}Warning!!! ${FGOFF}You are inside of a virtualenv.\n"
+                #printf "Please run ${FGG}workon ${VE_NAME}${FGOFF}\n"
             fi
         fi
 
@@ -54,8 +54,9 @@ if [[ -n "$PS1" ]] ; then
             CURRENT_DIR="`pwd`"
             if [[ -ne "$PROJECT_DIR" ]]; then
                 if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
-                    printf "\n${FGR}`basename $VIRTUAL_ENV`${FGOFF} is currently active.\n"
-                    printf "Please run ${FGG}deactivate ${FGOFF}or return to ${FGM}${PROJECT_DIR}${FGOFF}\n"
+                  deactivate
+                  #printf "\n${FGR}`basename $VIRTUAL_ENV`${FGOFF} is currently active.\n"
+                  #printf "Please run ${FGG}deactivate ${FGOFF}or return to ${FGM}${PROJECT_DIR}${FGOFF}\n"
                 fi
             fi
         fi
