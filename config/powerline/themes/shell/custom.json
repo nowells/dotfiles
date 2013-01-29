@@ -13,12 +13,16 @@
 				"name": "user"
 			},
 			{
+				"name": "branch",
+				"before": " "
+			},
+			{
 				"name": "virtualenv",
 				"before": "ⓔ  "
 			},
 			{
-				"name": "branch",
-				"before": " "
+				"module": "custompowerline.segments",
+				"name": "rvm"
 			},
 			{
 				"name": "cwd",
