@@ -68,16 +68,19 @@ if [[ -n "$PS1" ]] ; then
             if [[ -ne "$PROJECT_DIR" ]]; then
                 if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
                   deactivate
+                  workon default 2> /dev/null
                   #printf "\n${FGR}`basename $VIRTUAL_ENV`${FGOFF} is currently active.\n"
                   #printf "Please run ${FGG}deactivate ${FGOFF}or return to ${FGM}${PROJECT_DIR}${FGOFF}\n"
                 fi
             fi
+        else
+            workon default 2> /dev/null
         fi
 
         if [[ "$BASE_TERM" == "screen-256color" ]]; then
             # Setup prompt title name for screen session tab naming.
             PROMPT_TITLE='shell'
-            if [[ -ne "$VIRTUAL_ENV" ]]; then
+            if [[ -ne "$VIRTUAL_ENV" && `basename $VIRTUAL_ENV` != "default" ]]; then
                 PROMPT_TITLE=`basename $VIRTUAL_ENV`
             else
                 DIR=$PWD
