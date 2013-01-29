@@ -31,11 +31,24 @@ if [[ -n "$PS1" ]] ; then
     BGC="\033[46m"
     BGW="\033[47m"
 
+    _powerline_tmux_setenv() {
+      if [[ -n "$TMUX" ]]; then
+        tmux setenv TMUX_"$1"_$(tmux display -p "#D" | tr -d %) "$2"
+      fi
+    }
+
+    _powerline_tmux_set_columns() {
+      _powerline_tmux_setenv COLUMNS "$COLUMNS"
+    }
+
     # set up command prompt
-    function __prompt_command()
+    __prompt_command()
     {
         # capture the exit status of the last command
         EXIT="$?"
+
+        _powerline_tmux_setenv PWD "$PWD"
+
         STUPID_PS1="\n"
 
         if [[ -h ".ve" && -d ".ve" ]]; then
@@ -111,6 +124,10 @@ in \[$FGG\]\w\[$FGOFF\] \
 
         PS1=$AWESOME_PS1
     }
+
+    trap "_powerline_tmux_set_columns" SIGWINCH
+    kill -SIGWINCH "$$"
+
     PROMPT_COMMAND=__prompt_command
 
     export EDITOR=vim

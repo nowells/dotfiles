@@ -57,7 +57,7 @@
 		"user": { "fg": "white", "bg": "darkblue", "attr": ["bold"] },
 		"superuser": { "fg": "white", "bg": "brightred", "attr": ["bold"] },
 		"virtualenv": { "fg": "white", "bg": "mediumorange" },
-		"branch": { "fg": "gray0", "bg": "mediumgreen" },
+		"branch": { "fg": "white", "bg": "mediumgreen" },
 		"cwd": { "fg": "gray9", "bg": "gray4" },
 		"cwd:current_folder": { "fg": "gray10", "bg": "gray4", "attr": ["bold"] },
 		"cwd:divider": { "fg": "gray7", "bg": "gray4" },
