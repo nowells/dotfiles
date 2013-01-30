@@ -1,14 +1,31 @@
-ack             dirmngr         gfortran        gpg-agent       intltool        libgcrypt       little-cms2     node            pixman          rabbitmq        tig
-apple-gcc42     dos2unix        ghostscript     graphviz        jasper          libgeotiff      lua             nspr            pkg-config      radlib          tmux
-atk             erlang          giflib          grass           jbig2dec        libgpg-error    lzlib           nss             png2ico         readline        unixodbc
-autoconf        faad2           gist            grc             jetty           libksba         lzo             openssl         postgis         redis           wemux
-automake        fdupes          git             gremlin         jmeter          libmpc          macvim          orientdb        postgresql      riak            wget
-bash            fftw            git-extras      growlnotify     jpeg            libspatialite   mad             ossp-uuid       proctools       rlwrap          wkhtmltopdf
-boost           flip            glances         gsl             jq              libtasn1        memcached       p11-kit         proj            s3cmd           wview
-brew-pip        freexl          glib            gtk+            json-c          libtiff         mmv             pango           protobuf        siege           xz
-cairo           gawk            gmp             hadoop          keychain        libtool         mobile-shell    pcre            pstree          sip
-cassandra       gd              gnu-sed         hbase           libao           libusb          mpfr            percona-toolkit pth             spatialindex
-clojure         gdal            gnupg           hdf5            libassuan       libusb-compat   mysql           phantomjs       pyqt            spidermonkey
-cmake           gdk-pixbuf      gnupg2          icu4c           libdvdcss       libxml2         neo4j           pianobar        qgis            sqlite
-colordiff       geos            gnuplot         imagemagick     libevent        libyaml         nettle          pidof           qt              ssed
-ctags           gettext         gnutls          imagesnap       libffi          little-cms      ngrep           pinentry        r               szip
+ack                             ghostscript                     jmeter                          mmv                             pyqt
+apple-gcc42                     giflib                          jpeg                            mobile-shell                    qgis
+atk                             gist                            jq                              mpfr                            qt
+autoconf                        git                             json-c                          mysql                           r
+automake                        git-extras                      keychain                        neo4j                           rabbitmq
+bash                            glances                         libao                           nettle                          radlib
+boost                           glib                            libassuan                       ngrep                           readline
+brew-pip                        gmp                             libdvdcss                       node                            reattach-to-user-namespace
+cairo                           gnu-sed                         libevent                        nspr                            redis
+cassandra                       gnupg                           libffi                          nss                             rhino
+clojure                         gnupg2                          libgcrypt                       openssl                         riak
+cmake                           gnuplot                         libgeotiff                      orientdb                        rlwrap
+colordiff                       gnutls                          libgpg-error                    ossp-uuid                       s3cmd
+ctags                           gpg-agent                       libksba                         p11-kit                         siege
+dirmngr                         graphviz                        libmpc                          pango                           sip
+dos2unix                        grass                           libspatialite                   pcre                            spatialindex
+erlang                          grc                             libtasn1                        percona-toolkit                 spidermonkey
+faad2                           gremlin                         libtiff                         phantomjs                       sqlite
+fdupes                          growlnotify                     libtool                         pianobar                        ssed
+fftw                            gsl                             libusb                          pidof                           szip
+flip                            gtk+                            libusb-compat                   pinentry                        tidy
+fontforge                       hadoop                          libxml2                         pixman                          tidyp
+freexl                          hbase                           libyaml                         pkg-config                      tig
+gawk                            hdf5                            little-cms                      png2ico                         tmux
+gd                              icu4c                           little-cms2                     postgis                         unixodbc
+gdal                            imagemagick                     lua                             postgresql                      vim
+gdk-pixbuf                      imagesnap                       lzlib                           proctools                       wget
+geeknote                        intltool                        lzo                             proj                            wkhtmltopdf
+geos                            jasper                          macvim                          protobuf                        wview
+gettext                         jbig2dec                        mad                             pstree                          xz
+gfortran                        jetty                           memcached                       pth
