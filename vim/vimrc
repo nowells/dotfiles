@@ -20,6 +20,7 @@
 "     Jump To Same File Tag Definition: <c-]>
 "     Jump To Global Tag Definition: g<c-]>
 "     Jump Back To Code Use: <c-t>
+"     Go To File: gf
 "     http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 "  NerdCommenter:
 "     Comment Toggle: <leader>c<space>
