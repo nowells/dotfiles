@@ -85,3 +85,6 @@
 [submodule "vim/bundle/rails"]
 	path = vim/bundle/rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule "vim/bundle/gf-python"]
+	path = vim/bundle/gf-python
+	url = https://github.com/mkomitee/vim-gf-python.git
