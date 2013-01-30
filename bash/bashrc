@@ -49,28 +49,22 @@ if [[ -n "$PS1" ]] ; then
 
         _powerline_tmux_setenv PWD "$PWD"
 
-        STUPID_PS1="\n"
-
         if [[ -h ".ve" && -d ".ve" ]]; then
             VE_DIR="`readlink .ve 2>/dev/null`"
             VE_NAME="`basename $VE_DIR 2>/dev/null`"
             if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
                 workon $VE_NAME
-                #printf "\n${FGR}Warning!!! ${FGOFF}You are inside of a virtualenv.\n"
-                #printf "Please run ${FGG}workon ${VE_NAME}${FGOFF}\n"
             fi
         fi
 
         # Provide feedback if we are not currently working within the selected VIRTUAL_ENV
-        if [[ -ne "$VIRTUAL_ENV" ]]; then
+        if [[ "$VIRTUAL_ENV" != "" ]]; then
             PROJECT_DIR="`cat $VIRTUAL_ENV/.project 2> /dev/null`"
             CURRENT_DIR="`pwd`"
-            if [[ -ne "$PROJECT_DIR" ]]; then
+            if [[ "$PROJECT_DIR" != "" ]]; then
                 if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
                   deactivate
                   workon default 2> /dev/null
-                  #printf "\n${FGR}`basename $VIRTUAL_ENV`${FGOFF} is currently active.\n"
-                  #printf "Please run ${FGG}deactivate ${FGOFF}or return to ${FGM}${PROJECT_DIR}${FGOFF}\n"
                 fi
             fi
         else
@@ -80,7 +74,7 @@ if [[ -n "$PS1" ]] ; then
         if [[ "$BASE_TERM" == "screen-256color" ]]; then
             # Setup prompt title name for screen session tab naming.
             PROMPT_TITLE='shell'
-            if [[ -ne "$VIRTUAL_ENV" && `basename $VIRTUAL_ENV` != "default" ]]; then
+            if [[ "$VIRTUAL_ENV" != "" && `basename $VIRTUAL_ENV` != "default" ]]; then
                 PROMPT_TITLE=`basename $VIRTUAL_ENV`
             else
                 DIR=$PWD
@@ -101,27 +95,6 @@ if [[ -n "$PS1" ]] ; then
             #echo -ne "\ek$PROMPT_TITLE\e\\"
             echo -ne '\033k'$PROMPT_TITLE'\033\\'
         fi
-
-        if [ $EXIT -eq 0 ]; then STUPID_PS1+="\[$FGG\][\!]\[$FGOFF\] "; else STUPID_PS1+="\[$FGR\][\!]\[$FGOFF\] "; fi
-
-        # if logged in via ssh shows the ip of the client
-        if [ -n "$SSH_CLIENT" ]; then STUPID_PS1+="\[$FGY\]("${$SSH_CLIENT%% *}")\[$FGOFF\]"; fi
-
-        vcprompt() {
-          ~/bin/vcprompt -f $'on %n:%b'
-        }
-
-        # basic information (user@host:path)
-        STUPID_PS1+="\[$FGM\]\u\[$FGOFF\] \
-at \[$FGY\]\h\[$FGOFF\] \
-in \[$FGG\]\w\[$FGOFF\] \
-\[$EFGM\]$(vcprompt)\[$FGOFF\]\
-\[$FGY\] $(~/.rvm/bin/rvm-prompt i v p g)\[$FGOFF\]"
-
-        if [ -n "$VE_NAME" ]; then STUPID_PS1+=" workon \[$FGR\]$VE_NAME\[$FGOFF\]"; fi
-
-        # prompt $ or # for root
-        STUPID_PS1+="\n\$ "
 
         AWESOME_PS1="\n$(powerline shell left --last_exit_code=$EXIT)\n$ "
 
