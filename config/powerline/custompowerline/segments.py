@@ -1,18 +1,17 @@
-import subprocess
 import os
 
 
 def rvm():
-    rvm_command = os.path.expanduser('~/.rvm/bin/rvm-prompt',)
-    if os.path.exists(rvm_command):
-        proc = subprocess.Popen(
-            [rvm_command, 'u', 'v', 'g'],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-        output, _ = proc.communicate()
-        if output:
-            return u'%s' % output.strip().decode('utf-8')
+    rvm_string = os.path.basename(os.environ.get('GEM_HOME', '')) or None
+    if not rvm_string:
+        return
+    ruby, _, gemset = rvm_string.partition('@')
+    interpreter, _, other = ruby.partition('-')
+    version, _, patch = other.partition('-')
+    if gemset:
+        return '{0}-{1}@{2}'.format(interpreter, version, gemset)
+    else:
+        return '{0}-{1}'.format(interpreter, version)
 
 
 def branch():
