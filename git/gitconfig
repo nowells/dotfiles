@@ -97,39 +97,33 @@ textconv = strings
 [diff "pdf"]
 textconv = pdf2text
 
-[gitflow "branch"]
-master = master
-develop = develop
-
-[gitflow "prefix"]
-feature = feature/
-release = release/
-hotfix = hotfix/
-support = support/
-versiontag = production/$(date +%Y/%m/%d/)
-
 [difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [difftool]
-	prompt = false
+prompt = false
+tool = Kaleidoscope
 
 [merge]
 keepBackup = false
-	tool = Kaleidoscope
+summary = true
+verbosity = 1
+tool = mvimdiff
+#tool = Kaleidoscope
 
-[mergetool "p4merge"]
-cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
-keepTemporaries = false
-trustExitCode = false
-keepBackup = false
+[mergetool]
+prompt = false
+
+[mergetool "mvimdiff"]
+cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
+keepbackup=false
+
+[mergetool "Kaleidoscope"]
+cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+trustExitCode = true
+
+[init]
+templatedir = ~/.git_template
 
 [gist]
 private = yes
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[mergetool]
-	prompt = false
-[init]
-	templatedir = ~/.git_template

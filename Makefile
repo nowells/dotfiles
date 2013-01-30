@@ -1,11 +1,17 @@
 install: install-vim install-bash install-virtualenvwrapper \
          install-terminal-settings install-tmux install-git \
 				 install-python install-rvm install-powerline install-ipython \
-				 install-config
+				 install-config install-fonts
+
+install-fonts:
+	cp -f `pwd`/fonts/* ~/Library/Fonts
 
 install-config:
 	rm -rf ~/.config
 	ln -s `pwd`/config ~/.config
+	rm -f ~/.inputrc ~/.editrc
+	ln -s `pwd`/config/inputrc ~/.inputrc
+	ln -s `pwd`/config/editrc ~/.editrc
 
 install-ipython:
 	rm -rf ~/.ipython
