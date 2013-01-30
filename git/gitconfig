@@ -108,8 +108,7 @@ tool = Kaleidoscope
 keepBackup = false
 summary = true
 verbosity = 1
-tool = mvimdiff
-#tool = Kaleidoscope
+tool = splice
 
 [mergetool]
 prompt = false
@@ -120,6 +119,10 @@ keepbackup=false
 
 [mergetool "Kaleidoscope"]
 cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+trustExitCode = true
+
+[mergetool "splice"]
+cmd = "mvim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
 trustExitCode = true
 
 [init]

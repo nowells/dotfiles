@@ -79,3 +79,6 @@
 [submodule "vim/bundle/webapi"]
 	path = vim/bundle/webapi
 	url = https://github.com/mattn/webapi-vim.git
+[submodule "vim/bundle/splice"]
+	path = vim/bundle/splice
+	url = https://github.com/sjl/splice.vim.git
