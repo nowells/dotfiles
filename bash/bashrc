@@ -2,6 +2,18 @@
 if [[ -n "$PS1" ]] ; then
     export PATH=~/.powerline/scripts:$PATH
 
+    # TMUX
+    if which tmux 2>&1 >/dev/null; then
+      # if no session is started, start a new session
+      test -z "$TMUX" && tmux
+      #test -z "$TMUX" && (tmux attach || tmux new-session)
+
+      # when quitting tmux, try to attach
+      while test -z ${TMUX}; do
+        tmux attach || break
+      done
+    fi
+
     FGOFF="\033[0m"
     # Foreground
     FGK="\033[0;30m" # Black
