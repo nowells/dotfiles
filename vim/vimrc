@@ -554,3 +554,18 @@
   let g:gist_open_browser_after_post = 1
   let g:gist_post_private = 1
   let g:gist_show_privates = 1
+
+" Copy And Paste:
+  " To Set this up in iTerm2 you need to add key mappings for Command+v and
+  " Command+c to send [1;2B and [1;2A respectively (you can choose someother
+  " escape characters
+  " Paste:
+  nnoremap <Esc>v "+p
+  inoremap <Esc>v <C-r><C-o>+
+  vnoremap <Esc>v c<ESC>"+p
+  nnoremap <D-v> "+p
+  inoremap <D-v> <C-r><C-o>+
+  vnoremap <D-v> c<ESC>"+p
+  " Copy:
+  vnoremap <Esc>c "+yi
+  vnoremap <D-c> "+yi
