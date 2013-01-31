@@ -15,7 +15,7 @@
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
 	<key>AutoHideTmuxClientSession</key>
-	<true/>
+	<false/>
 	<key>CheckTestRelease</key>
 	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
@@ -972,7 +972,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/nstrite/.config/iTerm2</string>
+	<string>~/.config/iTerm2</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
