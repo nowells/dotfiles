@@ -12,10 +12,10 @@
 set editing-mode vi
 set meta-flag on
 set completion-ignore-case on
-set expand-tilde on
 set convert-meta off
 set input-meta on
 set output-meta on
-set show-all-if-ambiguous on
 set visible-stats on
+#set expand-tilde on
+#set show-all-if-ambiguous on
 #set -o vi
