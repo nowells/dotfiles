@@ -2,6 +2,15 @@
 if [[ -n "$PS1" ]] ; then
     export PATH=~/.powerline/scripts:$PATH
 
+    export LANG="en_US.UTF-8"
+    export LC_COLLATE="en_US.UTF-8"
+    export LC_CTYPE="en_US.UTF-8"
+    export LC_MESSAGES="en_US.UTF-8"
+    export LC_MONETARY="en_US.UTF-8"
+    export LC_NUMERIC="en_US.UTF-8"
+    export LC_TIME="en_US.UTF-8"
+    export LC_ALL="en_US.UTF-8"
+
     # TMUX
     if which tmux 2>&1 >/dev/null; then
       # if no session is started, start a new session
@@ -13,6 +22,8 @@ if [[ -n "$PS1" ]] ; then
         tmux attach || break
       done
     fi
+
+    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
     FGOFF="\033[0m"
     # Foreground
@@ -116,7 +127,7 @@ if [[ -n "$PS1" ]] ; then
     trap "_powerline_tmux_set_columns" SIGWINCH
     kill -SIGWINCH "$$"
 
-    PROMPT_COMMAND=__prompt_command
+    export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} __prompt_command"
 
     export EDITOR=vim
     export ARCHFLAGS="-arch x86_64"
@@ -228,14 +239,6 @@ if [[ -n "$PS1" ]] ; then
     export GPG_TTY=`tty`
     eval `keychain --eval --inherit any id_rsa`
 
-    export LANG="en_US.UTF-8"
-    export LC_COLLATE="en_US.UTF-8"
-    export LC_CTYPE="en_US.UTF-8"
-    export LC_MESSAGES="en_US.UTF-8"
-    export LC_MONETARY="en_US.UTF-8"
-    export LC_NUMERIC="en_US.UTF-8"
-    export LC_TIME="en_US.UTF-8"
-    export LC_ALL="en_US.UTF-8"
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
