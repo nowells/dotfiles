@@ -72,6 +72,10 @@
 "     Align Variables On Colons: <leader>a:
 "  Surround:
 "     Change Surroundin: " to ': cs"'
+"     Surround Sentence With Quotes: yss"
+"     Surround Word With Quotes: ysiw"
+"     Surrount Word With "{ XYZ }": ysiw{
+"     Surrount Word With "{XYZ}": ysiw}
 "  EasyMotion:
 "     Jump To Word: <leader><leader>w
 "     Jump To Line: <leader><leader>j
