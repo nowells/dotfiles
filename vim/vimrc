@@ -77,8 +77,8 @@
 "     Surrount Word With "{ XYZ }": ysiw{
 "     Surrount Word With "{XYZ}": ysiw}
 "  EasyMotion:
-"     Jump To Word: <leader><leader>w
-"     Jump To Line: <leader><leader>j
+"     Jump To Word: <leader>w
+"     Jump To Line: <leader>j
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -276,8 +276,8 @@
     " set relativenumber changes Vim’s line number column to display how far away each line is
     " from the current one, instead of showing the absolute line number.
     " The inverse is `set number`
-    " set relativenumber
-    set number
+    "set number
+    set relativenumber
     set cursorline
     set visualbell
     set hidden
@@ -575,3 +575,6 @@
   " Copy:
   vnoremap <Esc>c "+yi
   vnoremap <D-c> "+yi
+
+" EasyMotion:
+  let g:EasyMotion_leader_key = '<Leader>'
