@@ -79,6 +79,12 @@
 "  EasyMotion:
 "     Jump To Word: <leader>w
 "     Jump To Line: <leader>j
+"  Spelling:
+"     Toggle Spelling: <leader>s
+"     Next Spelling Error: <leader>sn
+"     Previous Spelling Error: <leader>sp
+"     Add Word To Dictionary: <leader>sa
+"     List Spell Options: <leader>ss
 
 " PathToGen:
 "   Initialize pathogen to handle VIM bundles
@@ -578,3 +584,25 @@
 
 " EasyMotion:
   let g:EasyMotion_leader_key = '<Leader>'
+
+" Spelling:
+  set spell
+  highlight clear SpellBad
+  highlight SpellBad term=underline cterm=underline
+  highlight clear SpellCap
+  highlight SpellCap term=underline cterm=underline
+  highlight clear SpellRare
+  highlight SpellRare term=underline cterm=underline
+  highlight clear SpellLocal
+  highlight SpellLocal term=underline cterm=underline
+
+  " Toggle spelling with ,s
+  nnoremap <leader>s :setlocal spell! spell?<CR>
+  " Next Spelling Error
+  noremap <leader>sn ]s
+  " Previous Spelling Error
+  nnoremap <leader>sp [s
+  " Add Word To Dictionary
+  nnoremap <leader>sa zg
+  " List Spell Options
+  nnoremap <leader>ss z=]
