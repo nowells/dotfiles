@@ -14,6 +14,8 @@ install-config:
 	ln -s `pwd`/config/editrc ~/.editrc
 	rm -f ~/Library/Preferences/com.googlecode.iterm2.plist
 	cp `pwd`/config/iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences/
+	rm -f ~/.pdbrc
+	ln -s `pwd`/config/pdbrc ~/.pdbrc
 
 install-ipython:
 	rm -rf ~/.ipython
