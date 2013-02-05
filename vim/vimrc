@@ -586,14 +586,19 @@
   let g:EasyMotion_leader_key = '<Leader>'
 
 " Spelling:
+  setlocal spelllang=en
   set spell
+  set spellsuggest=10
+  syntax spell toplevel
+
   highlight clear SpellBad
-  highlight SpellBad term=underline cterm=underline
   highlight clear SpellCap
-  highlight SpellCap term=underline cterm=underline
   highlight clear SpellRare
-  highlight SpellRare term=underline cterm=underline
   highlight clear SpellLocal
+
+  highlight SpellBad term=underline cterm=underline ctermfg=red
+  highlight SpellCap term=underline cterm=underline ctermfg=blue
+  highlight SpellRare term=underline cterm=underline ctermfg=green
   highlight SpellLocal term=underline cterm=underline
 
   " Toggle spelling with ,s
@@ -606,3 +611,9 @@
   nnoremap <leader>sa zg
   " List Spell Options
   nnoremap <leader>ss z=]
+
+  fun! IgnoreCamelCaseSpell()
+    syntax match NoSpellURL /\v(ht|f)tps?:\/\/\S*/ contains=@NoSpell transparent
+    syntax cluster Spell add=NoSpellURL
+  endfun
+  autocmd BufRead,BufNewFile * :call IgnoreCamelCaseSpell()
