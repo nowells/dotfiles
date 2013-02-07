@@ -130,3 +130,5 @@ templatedir = ~/.git_template
 
 [gist]
 private = yes
+[credential]
+helper = osxkeychain

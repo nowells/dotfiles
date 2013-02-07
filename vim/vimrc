@@ -124,7 +124,7 @@
 
   " When moving our cursor, do not have cursor go to the last line, keep
   " context
-  set scrolloff=5
+  set scrolloff=999
 
   " File and Buffer opening handling
     " Make tab completion for files/buffers act like bash
