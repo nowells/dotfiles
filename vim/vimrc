@@ -306,6 +306,7 @@
   " MouseSupport:
     " Enable mouse everywhere
     set mouse=a
+    set ttymouse=xterm2
     " Hide mouse pointer while typing
     set mousehide
     set mousemodel=popup
