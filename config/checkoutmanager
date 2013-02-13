@@ -1,0 +1,29 @@
+# ``checkoutmanager co`` checks them all out (or clones them).
+# ``checkoutmanager up`` updates them all.
+# ``checkoutmanager st`` to see if there are uncommitted changes.
+# ``checkoutmanager out`` to see if there are unpushed git/hg commits.
+
+
+[dotfiles]
+vcs = git
+basedir = ~
+checkouts = 
+    git@github.com:nowells/dotfiles.git 
+
+[projects]
+vcs = git
+basedir = ~/projects
+checkouts =
+    git@github.com:django/django.git
+
+
+# [dotfolders]
+# # Advanced usage!
+# # Folders that end up as dotted configfolders in my home dir.
+# # Note that there's a directory name behind the repository
+# # location, separated by a space.
+# vcs = bzr
+# basedir = ~
+# checkouts =
+#     lp:emacsconfig/trunk .emacs.d
+#     sftp://somewhere/subversion/trunk .subversion

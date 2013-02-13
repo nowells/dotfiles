@@ -16,6 +16,8 @@ install-config:
 	cp `pwd`/config/iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences/
 	rm -f ~/.pdbrc
 	ln -s `pwd`/config/pdbrc ~/.pdbrc
+	rm -f ~/.checkoutmanager
+	ln -s `pwd`/config/checkoutmanager ~/.checkoutmanager
 
 install-ipython:
 	rm -rf ~/.ipython
