@@ -14,8 +14,7 @@ checkouts =
 vcs = git
 basedir = ~/projects
 checkouts =
-    git@github.com:django/django.git
-    git@strite.org:resume.git
+    git@strite.org:resume.git resume
     git@github.com:nowells/git-goggles.git
 
 # [dotfolders]
