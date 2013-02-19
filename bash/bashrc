@@ -1,5 +1,6 @@
 # If not running interactively, don't do anything
 if [[ -n "$PS1" ]] ; then
+    set -o vi
     export PATH=~/.powerline/scripts:$PATH
 
     export LANG="en_US.UTF-8"
