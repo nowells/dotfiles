@@ -128,7 +128,7 @@ if [[ -n "$PS1" ]] ; then
     trap "_powerline_tmux_set_columns" SIGWINCH
     kill -SIGWINCH "$$"
 
-    export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} __prompt_command"
+    export PROMPT_COMMAND="__prompt_command; ${PROMPT_COMMAND:+$PROMPT_COMMAND ;}"
 
     export EDITOR=vim
     export ARCHFLAGS="-arch x86_64"
