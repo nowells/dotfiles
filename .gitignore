@@ -2,7 +2,8 @@
 *.pyc
 *.pyo
 *.bak
-vim/tmp/
-vim/.netrwhist
-vim/undo/
-ipython/profile_default/history.sqlite
+/vim/tmp/
+/vim/.netrwhist
+/vim/undo/
+/vim/bundle/
+/ipython/profile_default/history.sqlite

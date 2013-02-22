@@ -86,19 +86,137 @@
 "     Add Word To Dictionary: <leader>sa
 "     List Spell Options: <leader>ss
 
-" PathToGen:
-"   Initialize pathogen to handle VIM bundles
-"   http://andrewho.co.uk/weblog/vim-pathogen-with-mutt-and-git
-  filetype off
-  call pathogen#runtime_append_all_bundles()
-  call pathogen#helptags()
-  filetype plugin indent on
+" Vundle
+    " Setting up Vundle - the vim plugin bundler
+        let iCanHazVundle=1
+        let vundle_readme=expand("~/.vim/bundle/vundle/README.md")
+        if !filereadable(vundle_readme)
+        "if !isdirectory("~/.vim/bundle/vundle")
+            echo "Installing Vundle.."
+            echo ""
+            silent !mkdir -p ~/.vim/bundle
+            silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+            let iCanHazVundle=0
+        endif
+        set rtp+=~/.vim/bundle/vundle/
+        call vundle#rc()
+        Bundle 'gmarik/vundle'
+    " Setting up Vundle - the vim plugin bundler end
+
+    " Bundles
+        " General Vim
+            Bundle 'scrooloose/nerdtree'
+            Bundle 'scrooloose/nerdcommenter'
+            Bundle 'scrooloose/syntastic'
+            Bundle 'kien/ctrlp.vim'
+            Bundle 'majutsushi/tagbar'
+            Bundle 'mattn/webapi-vim'
+            Bundle 'ervandew/supertab'
+            Bundle 'kien/rainbow_parentheses.vim'
+            Bundle 'godlygeek/tabular'
+            Bundle 'sjl/gundo.vim'
+            Bundle 'mileszs/ack.vim'
+            Bundle 'ervandew/screen'
+            Bundle 'mutewinter/vim-indent-guides'
+            "Bundle 'taglist.vim'
+            "Bundle 'rosenfeld/conque-term'
+            "Bundle 'sjl/clam.vim'
+            "Bundle 'peterhoeg/vim-tmux'
+            "Bundle 'benmills/vimux'
+            "Bundle 'SearchComplete'
+            "Bundle 'TaskList.vim'
+            "Bundle 'mru.vim'
+        " General Vim end
+
+        " Version Control
+            Bundle 'sjl/splice.vim'
+            Bundle 'tpope/vim-fugitive'
+            Bundle 'airblade/vim-gitgutter'
+            Bundle 'mattn/gist-vim'
+        " End Version Control
+
+        " Motion
+            Bundle 'Lokaltog/vim-easymotion'
+            Bundle 'tpope/vim-surround'
+            Bundle 'tpope/vim-repeat'
+        " End Motion
+
+        " Color Schemes
+            Bundle 'tomasr/molokai'
+            "Bundle 'altercation/vim-colors-solarized'
+        " Color Schemes end
+
+        " Python
+            Bundle 'alfredodeza/pytest.vim'
+            Bundle 'klen/python-mode'
+            Bundle 'olivierverdier/python-syntax.vim'
+            Bundle 'mkomitee/vim-gf-python'
+            "Bundle 'pythoncomplete'
+            "Bundle 'Pydiction'
+            "Bundle 'fs111/pydoc.vim'
+            "Bundle 'olethanh/Vim-nosecompiler'
+            "Bundle 'rope-vim'
+        " Python end
+
+        " Ruby
+            Bundle 'tpope/vim-rails'
+        " End Ruby
+
+        " Web (generic)
+            Bundle 'tpope/vim-haml'
+            Bundle 'gregsexton/MatchTag'
+            Bundle 'mattn/zencoding-vim'
+            Bundle 'Rykka/colorv.vim'
+            Bundle 'juvenn/mustache.vim'
+            Bundle 'HTML-AutoCloseTag'
+            Bundle 'JavaScript-Indent'
+        " Web (generic) end
+
+        " Javascript / node / coffeescript
+            Bundle 'pangloss/vim-javascript'
+            Bundle 'itspriddle/vim-jquery'
+            Bundle 'maksimr/vim-jsbeautify'
+            "Bundle 'digitaltoad/vim-jade'
+            "Bundle 'leshill/vim-json'
+            "Bundle 'kchmck/vim-coffee-script'
+            "Bundle 'walm/jshint.vim'
+            "Bundle 'mmalecki/vim-node.js'
+            "Bundle 'lambdalisue/nodeunit.vim'
+        " Javascript / node /coffeescript end
+
+        " Misc
+            Bundle 'vim-scripts/nginx.vim'
+        " Misc end
+
+        " Unused (for now)
+            "Bundle 'bash-support.vim'
+            "Bundle 'dickeytk/status.vim'
+            "Bundle 'snipMate'
+            "Bundle 'kana/vim-smartinput'
+            "Bundle 'int3/vim-taglist-plus'
+            "Bundle 'reinh/vim-makegreen'
+            "Bundle 'flomotlik/vim-livereload'
+            "Bundle 'spolu/dwm.vim'
+            "Bundle 'vim-scripts/YankRing.vim'
+            "Bundle 'docunext/closetag.vim'
+            "Bundle 'Raimondi/delimitMate'
+        " Unused (for now) end
+    " Bundles end
+    if iCanHazVundle == 0
+        echo "Installing Bundles, please ignore key map error messages"
+        echo ""
+    :BundleInstall
+    endif
+" Vundle end
 
 " GeneralSettings:
   " Gets rid of all the crap that Vim does to be vi compatible. It’s 2010 — we
   " don’t need to be compatible with vi at the expense of functionality any
   " more.
   set nocompatible
+
+  " Enable plug-in support
+  filetype plugin indent on
 
   " The modelines bit prevents some security exploits having to do with
   " modelines in files. I never use modelines so I don’t miss any
@@ -618,3 +736,8 @@
     syntax cluster Spell add=NoSpellURL
   endfun
   autocmd BufRead,BufNewFile * :call IgnoreCamelCaseSpell()
+
+" Vim Javascript
+  let g:html_indent_inctags = "html,body,head,tbody"
+  let g:html_indent_script1 = "inc"
+  let g:html_indent_style1 = "inc"
