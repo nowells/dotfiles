@@ -5,6 +5,7 @@
 "   http://learnvimscriptthehardway.stevelosh.com/
 "   https://github.com/Lokaltog/powerline
 "   http://stackoverflow.com/questions/127591/using-caps-lock-as-esc-in-mac-os-x
+"   http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Install:
 "   easy_install flake8 autopep8 rope pytest http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
 "   brew install rhino tidy
@@ -257,11 +258,14 @@
   " Needs CSApprox plugin
   set t_Co=256
 
-  " Time to wait after ESC (default causes an annoying delay)
-  set timeoutlen=50
+  " Time to wait after sequences (default causes an annoying delay)
+  "set timeoutlen=50
 
   " Yanks go on clipboard instead.
   set clipboard+=unnamed
+
+  " Hide enter to continue for external apps - GIT
+  set shortmess=at
 
   " Code Folding, everything folded by default
   set foldmethod=indent
