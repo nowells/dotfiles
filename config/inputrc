@@ -8,6 +8,10 @@
 "\e[5D": backward-word
 "\e\e[C": forward-word
 "\e\e[D": backward-word
+# Ctrl-E or End: append at line end like in emacs mode
+"\C-E": vi-append-eol
+# Ctrl-A or Home: insert at line beginning like in emacs mode
+"\C-A": vi-insert-beg
 
 set editing-mode vi
 set keymap vi
@@ -19,4 +23,3 @@ set output-meta on
 set visible-stats on
 set show-all-if-ambiguous on
 #set expand-tilde on
-#set -o vi
