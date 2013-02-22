@@ -257,6 +257,12 @@
   " Needs CSApprox plugin
   set t_Co=256
 
+  " Time to wait after ESC (default causes an annoying delay)
+  set timeoutlen=50
+
+  " Yanks go on clipboard instead.
+  set clipboard+=unnamed
+
   " Code Folding, everything folded by default
   set foldmethod=indent
   set foldlevel=99
