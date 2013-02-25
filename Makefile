@@ -72,6 +72,6 @@ install-tmux:
 	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
 
 install-brew:
-	brew install ack jmeter pyqt apple-gcc42 giflib mobile-shell gist git mysql r keychain bash brew-pip node reattach-to-user-namespace cairo gnu-sed redis gnupg libffi nss rhino gnupg2 openssl gnutls ctags p11-kit graphviz libmpc pango dos2unix pcre libtasn1 spidermonkey faad2 phantomjs sqlite fdupes ssed fftw gsl szip gtk+ tidy fontforge libxml2 pixman libyaml tig gawk hdf5 png2ico tmux gd icu4c unixodbc imagemagick postgresql vim gdk-pixbuf lzlib proctools wget intltool lzo wkhtmltopdf macvim gettext jbig2dec mad pstree memcached irssi autojump zeromq
-	brew install https://raw.github.com/nowells/homebrew/master/Library/Formula/doctorjs.rb
+	brew install ack jmeter pyqt apple-gcc42 giflib mobile-shell gist git mysql r keychain bash brew-pip node reattach-to-user-namespace cairo gnu-sed redis gnupg libffi nss rhino gnupg2 openssl gnutls ctags p11-kit graphviz libmpc pango dos2unix pcre libtasn1 spidermonkey faad2 phantomjs sqlite fdupes ssed fftw gsl szip gtk+ tidy fontforge libxml2 pixman libyaml tig gawk hdf5 png2ico tmux gd icu4c unixodbc imagemagick postgresql vim gdk-pixbuf lzlib proctools wget intltool lzo wkhtmltopdf macvim gettext jbig2dec mad pstree memcached irssi autojump zeromq swig
+	mkdir -p ~/Applications
 	brew linkapps

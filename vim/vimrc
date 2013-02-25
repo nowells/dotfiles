@@ -30,7 +30,7 @@
 "  Ack:
 "     Search: <leader>g
 "     http://vimbits.com/bits/153
-"     Search For Cursor: \a[wWbB]
+"     Search For Cursor: <leader>a[wWbB]
 "  CtrlP:
 "     Search Files: <leader>.
 "     Search Tags: <leader>/
@@ -387,6 +387,9 @@
     " Hide search matches on <leader>space
     nnoremap <leader><space> :noh<cr>
 
+    " Have the escape key turn off highlighting and escape
+    nnoremap <esc> :noh<return><esc>
+
   " Line Wrapping:
     set wrap
     set textwidth=79
@@ -560,8 +563,8 @@
   "
   " Note: If the text covered by a motion contains a newline it won't work.  Ack
   " searches line-by-line.
-  nnoremap <silent> \a :set opfunc=<SID>AckMotion<CR>g@
-  xnoremap <silent> \a :<C-U>call <SID>AckMotion(visualmode())<CR>
+  nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
+  xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
 
   function! s:CopyMotionForType(type)
       if a:type ==# 'v'
