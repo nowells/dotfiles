@@ -40,6 +40,7 @@ graveyard = !sh -c 'git push graveyard origin/$0:refs/heads/$0 && git push origi
 icebox = !sh -c 'git push graveyard origin/$0:refs/heads/icebox/$0 && git push origin $0 --delete'
 ctags = !.git/hooks/ctags
 smu = submodule update --init --recursive --force
+gerrit = push origin HEAD:refs/for/develop
 
 [color]
 diff = auto
