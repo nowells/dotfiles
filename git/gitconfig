@@ -39,7 +39,7 @@ l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s
 graveyard = !sh -c 'git push graveyard origin/$0:refs/heads/$0 && git push origin $0 --delete'
 icebox = !sh -c 'git push graveyard origin/$0:refs/heads/icebox/$0 && git push origin $0 --delete'
 ctags = !.git/hooks/ctags
-smu = submodule update --init --recursive
+smu = submodule update --init --recursive --force
 
 [color]
 diff = auto
