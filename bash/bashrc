@@ -215,6 +215,7 @@ if [[ -n "$PS1" ]] ; then
 
     export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,data_export,*"
     export NODE_PATH=/usr/local/lib/node_modules
+    export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
     export MILIEU_ENV="dev"
 
     export VIMCLOJURE_SERVER_JAR="$HOME/lib/vimclojure/server-2.3.1.jar"
