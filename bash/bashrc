@@ -212,6 +212,10 @@ if [[ -n "$PS1" ]] ; then
 
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
     [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+    [[ -r ~/.rbenv/completions ]] && source ~/.rbenv/completions/rbenv.bash
+    export PATH=$PATH:$HOME/.rbenv/shims
 
     export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,data_export,*"
     export NODE_PATH=/usr/local/lib/node_modules
@@ -243,5 +247,4 @@ if [[ -n "$PS1" ]] ; then
 
 fi
 
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH=$PATH:$HOME/.virtualenvs/default/bin

@@ -161,6 +161,7 @@
 
         " Ruby
             Bundle 'tpope/vim-rails'
+            Bundle 'rodjek/vim-puppet'
         " End Ruby
 
         " Web (generic)
