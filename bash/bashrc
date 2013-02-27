@@ -68,9 +68,6 @@ if [[ -n "$PS1" ]] ; then
     # set up command prompt
     __prompt_command()
     {
-        # capture the exit status of the last command
-        EXIT="$?"
-
         _powerline_tmux_setenv PWD "$PWD"
 
         if [[ -h ".ve" && -d ".ve" ]]; then
@@ -128,7 +125,7 @@ if [[ -n "$PS1" ]] ; then
     trap "_powerline_tmux_set_columns" SIGWINCH
     kill -SIGWINCH "$$"
 
-    export PROMPT_COMMAND="__prompt_command; ${PROMPT_COMMAND:+$PROMPT_COMMAND ;}"
+    export PROMPT_COMMAND="EXIT=\$?; ${PROMPT_COMMAND:+$PROMPT_COMMAND ;} __prompt_command;  history -a"
 
     export EDITOR=vim
     export ARCHFLAGS="-arch x86_64"
@@ -214,8 +211,7 @@ if [[ -n "$PS1" ]] ; then
     [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
     export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-    [[ -r ~/.rbenv/completions ]] && source ~/.rbenv/completions/rbenv.bash
-    export PATH=$PATH:$HOME/.rbenv/shims
+    eval "$(rbenv init -)"
 
     export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,data_export,*"
     export NODE_PATH=/usr/local/lib/node_modules
