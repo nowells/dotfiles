@@ -151,7 +151,7 @@ if [[ -n "$PS1" ]] ; then
 
     if [ `id -u` != '0' ]; then
         export WORKON_HOME=$HOME/.virtualenvs
-        export PROJECT_HOME=$HOME/projects
+        export PROJECT_HOME=$HOME/src
         export PIP_DOWNLOAD_CACHE=~/tmp/pip
         export PIP_REQUIRE_VIRTUALENV=true
         export PIP_VIRTUALENV_BASE=$WORKON_HOME
