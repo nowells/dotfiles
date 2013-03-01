@@ -98,7 +98,7 @@
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
-	<false/>
+	<true/>
 	<key>HighlightTabLabels</key>
 	<true/>
 	<key>HotKeyBookmark</key>
@@ -133,10 +133,23 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSToolbar Configuration Terminal Toolbar</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>1</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>0</integer>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSWindow Frame NSFontPanel</key>
+	<string>929 88 445 270 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 149 924 485 0 0 1920 1200 </string>
+	<string>441 360 924 485 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>254 146 570 448 0 0 1920 1178 </string>
+	<string>453 429 1536 944 0 0 2560 1418 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -885,11 +898,13 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>Working Directory</key>
 			<string>~/</string>
 		</dict>
 	</array>
+	<key>NoSyncNeverRemindPrefsChangesLost</key>
+	<true/>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -954,7 +969,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-02-06T23:00:42Z</date>
+	<date>2013-03-01T13:11:22Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -977,6 +992,8 @@
 	<false/>
 	<key>TmuxDashboardLimit</key>
 	<integer>10</integer>
+	<key>ToolbarVisible</key>
+	<false/>
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>URLHandlersByGuid</key>
@@ -1005,6 +1022,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20130122</string>
+	<string>1.0.0.20130210</string>
 </dict>
 </plist>

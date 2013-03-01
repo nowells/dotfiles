@@ -41,6 +41,7 @@ icebox = !sh -c 'git push graveyard origin/$0:refs/heads/icebox/$0 && git push o
 ctags = !.git/hooks/ctags
 smu = submodule update --init --recursive --force
 gerrit = push origin HEAD:refs/for/develop
+master-gerrit = push origin HEAD:refs/for/master
 
 [color]
 diff = auto
