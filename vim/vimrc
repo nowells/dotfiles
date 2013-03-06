@@ -171,7 +171,7 @@
             Bundle 'Rykka/colorv.vim'
             Bundle 'juvenn/mustache.vim'
             Bundle 'HTML-AutoCloseTag'
-            Bundle 'JavaScript-Indent'
+            "Bundle 'JavaScript-Indent'
         " Web (generic) end
 
         " Javascript / node / coffeescript
@@ -755,3 +755,4 @@
   let g:html_indent_inctags = "html,body,head,tbody"
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
+  autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79

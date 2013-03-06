@@ -111,7 +111,7 @@ tool = Kaleidoscope
 keepBackup = false
 summary = true
 verbosity = 1
-tool = splice
+tool = Kaleidoscope
 
 [mergetool]
 prompt = false
