@@ -92,7 +92,7 @@ if [[ -n "$PS1" ]] ; then
             workon default 2> /dev/null
         fi
 
-        if [[ "$BASE_TERM" == "screen-256color" ]]; then
+        if [ -n "$TMUX" ]; then
             # Setup prompt title name for screen session tab naming.
             PROMPT_TITLE='shell'
             if [[ "$VIRTUAL_ENV" != "" && `basename $VIRTUAL_ENV` != "default" ]]; then
@@ -165,7 +165,6 @@ if [[ -n "$PS1" ]] ; then
     alias em="emacs"
     alias ll="ls -alh"
     alias wget="wget --no-check-certificate"
-    alias tmux="TERM=screen-256color-bce tmux"
     alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"
     alias cuke="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t ~@slow"
     alias cuketag="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t "
@@ -187,9 +186,7 @@ if [[ -n "$PS1" ]] ; then
     export NODE_PATH=$NODE_PATH:/usr/local/lib/node
     export PATH=$PATH:/usr/local/share/npm/bin
 
-    # This needs to be xterm-256color-bce as opposed to xterm-256color for tmux/screen
-    # to allow for redrawing of bg color
-    #export TERM="xterm-256color"
+    export TERM="xterm-256color"
 
     if [ -f `brew --prefix`/etc/bash_completion ]; then
         . `brew --prefix`/etc/bash_completion
