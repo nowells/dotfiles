@@ -1,8 +1,9 @@
-function recursiveReplace(node) {
+function AddJiraLinks(node) {
     var JIRA_LINK_REGEX = /(\b[A-Z]{2,5}\-\d{1,5}\b)/g;
     var nodeText = node.nodeValue;
     if (node.nodeType == 3 &&
         JIRA_LINK_REGEX.test(nodeText) &&
+        node.parentNode !== null &&
         node.parentNode.nodeName !== 'A') {
         var jiraLink = document.createElement('span');
         jiraLink.innerHTML = nodeText.replace(
@@ -16,7 +17,7 @@ function recursiveReplace(node) {
         node.parentNode.replaceChild(jiraLink, node);
     } else if (node.nodeType == 1) { // element
         $(node).contents().each(function() {
-            recursiveReplace(this);
+            AddJiraLinks(this);
         });
     }
 }
@@ -31,10 +32,14 @@ if (typeof mo !== 'undefined') {
             if (mutation.addedNodes !== null) {
                 for (var i = 0; i < mutation.addedNodes.length; i++) {
                     var node = mutation.addedNodes[i];
-                    recursiveReplace(node);
+                    AddJiraLinks(node);
                 }
             }
         });
     });
     observer.observe(document, {childList: true, subtree: true});
 }
+
+$('body').on('blur paste', '[contenteditable]', function() {
+    AddJiraLinks(this);
+});
