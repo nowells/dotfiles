@@ -18,6 +18,8 @@ install-config:
 	ln -s `pwd`/config/pdbrc ~/.pdbrc
 	rm -f ~/.checkoutmanager.cfg
 	ln -s `pwd`/config/checkoutmanager ~/.checkoutmanager.cfg
+	rm -f ~/.js
+	ln -s `pwd`/config/js ~/.js
 
 install-ipython:
 	rm -rf ~/.ipython
