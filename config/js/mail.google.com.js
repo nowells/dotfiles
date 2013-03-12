@@ -4,7 +4,9 @@ function AddJiraLinks(node) {
     if (node.nodeType == 3 &&
         JIRA_LINK_REGEX.test(nodeText) &&
         node.parentNode !== null &&
-        node.parentNode.nodeName !== 'A') {
+        node.parentNode.nodeName !== 'A' &&
+        (node !== GetCaretPosition() && node.parentNode !== GetCaretPosition())
+       ) {
         var jiraLink = document.createElement('span');
         jiraLink.innerHTML = nodeText.replace(
             JIRA_LINK_REGEX,
@@ -20,6 +22,12 @@ function AddJiraLinks(node) {
             AddJiraLinks(this);
         });
     }
+}
+
+function GetCaretPosition() {
+    var node = document.getSelection().anchorNode;
+    var startNode = (node.nodeType == 3 ? node.parentNode : node);
+    return startNode;
 }
 
 var mo = window.MutationObserver ||
@@ -40,6 +48,6 @@ if (typeof mo !== 'undefined') {
     observer.observe(document, {childList: true, subtree: true});
 }
 
-$('body').on('blur paste', '[contenteditable]', function() {
+$('body').on('blur keyup paste', '[contenteditable]', function() {
     AddJiraLinks(this);
 });
