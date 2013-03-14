@@ -1,5 +1,5 @@
 #!/bin/bash
 # This hook is run after a new virtualenv is activated.
 
-pip install ipdb pytest vimpdb flake8
+pip install ipdb pytest vimpdb flake8 tornado pyzmq
 easy_install readline

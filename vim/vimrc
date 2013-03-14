@@ -86,6 +86,8 @@
 "     Previous Spelling Error: <leader>sp
 "     Add Word To Dictionary: <leader>sa
 "     List Spell Options: <leader>ss
+"  ZenCoding:
+"     Expand Template: <c-y>,
 
 " Vundle
     " Setting up Vundle - the vim plugin bundler
@@ -171,13 +173,13 @@
             Bundle 'Rykka/colorv.vim'
             Bundle 'juvenn/mustache.vim'
             Bundle 'HTML-AutoCloseTag'
-            "Bundle 'JavaScript-Indent'
         " Web (generic) end
 
         " Javascript / node / coffeescript
             Bundle 'pangloss/vim-javascript'
             Bundle 'itspriddle/vim-jquery'
             Bundle 'maksimr/vim-jsbeautify'
+            "Bundle 'JavaScript-Indent'
             "Bundle 'digitaltoad/vim-jade'
             "Bundle 'leshill/vim-json'
             "Bundle 'kchmck/vim-coffee-script'
@@ -720,7 +722,7 @@
 
 " Spelling:
   setlocal spelllang=en
-  set spell
+  set nospell
   set spellsuggest=10
   syntax spell toplevel
 
@@ -755,4 +757,4 @@
   let g:html_indent_inctags = "html,body,head,tbody"
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
-  autocmd FileType javascript setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+  autocmd FileType javascript setlocal smartindent expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
