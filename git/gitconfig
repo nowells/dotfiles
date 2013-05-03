@@ -39,9 +39,13 @@ l = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s
 graveyard = !sh -c 'git push graveyard origin/$0:refs/heads/$0 && git push origin $0 --delete'
 icebox = !sh -c 'git push graveyard origin/$0:refs/heads/icebox/$0 && git push origin $0 --delete'
 ctags = !.git/hooks/ctags
-smu = submodule update --init --recursive --force
+smu = !sh -c 'git submodule sync --recursive && git submodule update --init --recursive --force' -
 gerrit = push origin HEAD:refs/for/develop
 master-gerrit = push origin HEAD:refs/for/master
+assume   = update-index --assume-unchanged
+unassume = update-index --no-assume-unchanged
+assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
+p = !sh -c 'git stash && git pull && git stash pop'
 
 [color]
 diff = auto
@@ -70,6 +74,7 @@ whitespace = fix
 [diff]
 	tool = Kaleidoscope
 renames = copies
+	algorithm = patience
 
 [mirror]
 summary = true
