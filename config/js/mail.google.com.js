@@ -35,7 +35,7 @@ function AddJiraLinks(node) {
                     }
 
                     text = text.replace(
-                        match,
+                        new RegExp(match, "g"),
                         '<a ' +
                             'href="https://services.wisertogether.com/jira/browse/' + match + '"' +
                         'target="_blank">' + match + '</a>' + issueSummary + issueAssignee
