@@ -19,41 +19,43 @@ function AddJiraLinks(node) {
         for (var i = 0; i < matches.length; i++) {
             var match = matches[i];
 
-            var updateLink = function(data, status) {
-                var issueKey = match,
+            var updateLink = function(match) {
+                return function(data, status) {
+                    var issueKey = match,
                     issueSummary = '',
                     issueAssignee = '';
 
-                matched += 1;
+                    matched += 1;
 
-                if (status === 'success') {
-                    issueSummary = ' - ' + data.fields.summary;
-                    if (data.fields.assignee) {
-                        issueAssignee = ' (' + data.fields.assignee.displayName + ')'
+                    if (status === 'success') {
+                        issueSummary = ' - ' + data.fields.summary;
+                        if (data.fields.assignee) {
+                            issueAssignee = ' (' + data.fields.assignee.displayName + ')'
+                        }
                     }
-                }
 
-                text = text.replace(
-                    match,
-                    '<a ' +
-                    'href="https://services.wisertogether.com/jira/browse/' + match + '"' +
-                    'target="_blank">' + match + '</a>' + issueSummary + issueAssignee
+                    text = text.replace(
+                        match,
+                        '<a ' +
+                            'href="https://services.wisertogether.com/jira/browse/' + match + '"' +
+                        'target="_blank">' + match + '</a>' + issueSummary + issueAssignee
                     );
 
-                if (matched === matches.length) {
-                    jiraLink.innerHTML = text;
-                    node.parentNode.replaceChild(jiraLink, node);
-                }
-                else {
-                    console.log(matched + ' : ' + matches.length);
-                }
+                    if (matched === matches.length) {
+                        jiraLink.innerHTML = text;
+                        node.parentNode.replaceChild(jiraLink, node);
+                    }
+                    else {
+                        console.log(matched + ' : ' + matches.length);
+                    }
+                };
             };
 
             $.ajax({
                 url: 'https://services.wisertogether.com/jira/rest/api/2/issue/' +
                     match + '.json?fields=summary,assignee',
-                error: updateLink,
-                success: updateLink
+                error: updateLink(match),
+                success: updateLink(match)
             });
         }
     } else if (node.nodeType == 1) { // element
