@@ -121,6 +121,7 @@
             Bundle 'mileszs/ack.vim'
             Bundle 'ervandew/screen'
             Bundle 'mutewinter/vim-indent-guides'
+            Bundle 'tpope/vim-unimpaired'
             "Bundle 'taglist.vim'
             "Bundle 'rosenfeld/conque-term'
             "Bundle 'sjl/clam.vim'
@@ -173,12 +174,14 @@
             Bundle 'Rykka/colorv.vim'
             Bundle 'juvenn/mustache.vim'
             Bundle 'HTML-AutoCloseTag'
+            Bundle 'groenewege/vim-less'
         " Web (generic) end
 
         " Javascript / node / coffeescript
             Bundle 'pangloss/vim-javascript'
             Bundle 'itspriddle/vim-jquery'
             Bundle 'maksimr/vim-jsbeautify'
+            Bundle 'marijnh/tern_for_vim'
             "Bundle 'JavaScript-Indent'
             "Bundle 'digitaltoad/vim-jade'
             "Bundle 'leshill/vim-json'
@@ -757,4 +760,6 @@
   let g:html_indent_inctags = "html,body,head,tbody"
   let g:html_indent_script1 = "inc"
   let g:html_indent_style1 = "inc"
+  let g:syntastic_javascript_jslint_conf = "--bitwise --browser --curly --eqeqeq --immed --jquery --latedef --newcap --noarg --node --tonew --plusplus --regexp --trailing --undef --white --nomen"
   autocmd FileType javascript setlocal smartindent expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
+  let g:syntastic_javascript_checkers = [ 'jslint', 'jshint', 'gjslint' ]

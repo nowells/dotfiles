@@ -72,9 +72,9 @@ whitespace = fix
 #autocrlf = true
 
 [diff]
-	tool = Kaleidoscope
+tool = Kaleidoscope
 renames = copies
-	algorithm = patience
+algorithm = patience
 
 [mirror]
 summary = true

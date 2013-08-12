@@ -238,6 +238,8 @@ if [[ -n "$PS1" ]] ; then
     export GPG_TTY=`tty`
     eval `keychain --eval --inherit any id_rsa`
 
+    export PHANTOMJS_BIN=/usr/local/bin/phantomjs
+    export PATH="node_modules/.bin:$PATH"
 fi
 
-export PATH=$PATH:$HOME/.virtualenvs/default/bin
+export PATH=$PATH:$HOME/.virtualenvs/default/bin:bin:~/.cabal/bin
