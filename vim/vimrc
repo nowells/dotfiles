@@ -122,6 +122,7 @@
             Bundle 'ervandew/screen'
             Bundle 'mutewinter/vim-indent-guides'
             Bundle 'tpope/vim-unimpaired'
+            Bundle 'editorconfig/editorconfig-vim'
             "Bundle 'taglist.vim'
             "Bundle 'rosenfeld/conque-term'
             "Bundle 'sjl/clam.vim'
