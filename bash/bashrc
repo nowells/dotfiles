@@ -1,245 +1,105 @@
 # If not running interactively, don't do anything
-if [[ -n "$PS1" ]] ; then
-    set -o vi
-    export PATH=~/.powerline/scripts:$PATH
+export PATH=~/.powerline/scripts:$PATH
 
-    export LANG="en_US.UTF-8"
-    export LC_COLLATE="en_US.UTF-8"
-    export LC_CTYPE="en_US.UTF-8"
-    export LC_MESSAGES="en_US.UTF-8"
-    export LC_MONETARY="en_US.UTF-8"
-    export LC_NUMERIC="en_US.UTF-8"
-    export LC_TIME="en_US.UTF-8"
-    export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
-    # TMUX
-    if which tmux 2>&1 >/dev/null; then
-      # if no session is started, start a new session
-      test -z "$TMUX" && tmux
-      #test -z "$TMUX" && (tmux attach || tmux new-session)
+FGOFF="\033[0m"
+# Foreground
+FGK="\033[0;30m" # Black
+FGR="\033[0;31m" # Red
+FGG="\033[0;32m" # Green
+FGY="\033[0;33m" # Yellow
+FGB="\033[0;34m" # Blue
+FGM="\033[0;35m" # Magenta
+FGC="\033[0;36m" # Cyan
+FGW="\033[0;37m" # White
+# Emphasized Foreground
+EFGK="\033[1;30m"
+EFGR="\033[1;31m"
+EFGG="\033[1;32m"
+EFGY="\033[1;33m"
+EFGB="\033[1;34m"
+EFGM="\033[1;35m"
+EFGC="\033[1;36m"
+EFGW="\033[1;37m"
+# Background
+BGK="\033[40m"
+BGR="\033[41m"
+BGG="\033[42m"
+BGY="\033[43m"
+BGB="\033[44m"
+BGM="\033[45m"
+BGC="\033[46m"
+BGW="\033[47m"
 
-      # when quitting tmux, try to attach
-      while test -z ${TMUX}; do
-        tmux attach || break
-      done
-    fi
 
-    [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+export EDITOR=vim
+export ARCHFLAGS="-arch x86_64"
 
-    FGOFF="\033[0m"
-    # Foreground
-    FGK="\033[0;30m" # Black
-    FGR="\033[0;31m" # Red
-    FGG="\033[0;32m" # Green
-    FGY="\033[0;33m" # Yellow
-    FGB="\033[0;34m" # Blue
-    FGM="\033[0;35m" # Magenta
-    FGC="\033[0;36m" # Cyan
-    FGW="\033[0;37m" # White
-    # Emphasized Foreground
-    EFGK="\033[1;30m"
-    EFGR="\033[1;31m"
-    EFGG="\033[1;32m"
-    EFGY="\033[1;33m"
-    EFGB="\033[1;34m"
-    EFGM="\033[1;35m"
-    EFGC="\033[1;36m"
-    EFGW="\033[1;37m"
-    # Background
-    BGK="\033[40m"
-    BGR="\033[41m"
-    BGG="\033[42m"
-    BGY="\033[43m"
-    BGB="\033[44m"
-    BGM="\033[45m"
-    BGC="\033[46m"
-    BGW="\033[47m"
+export BASE_TERM=$TERM
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export CLICOLOR=1
+export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
+export LC_CTYPE=en_US.utf-8
+export PATH=~/bin:/usr/local/sbin:/usr/local/bin:~/.local/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin
+export IGNOREEOF=1
+export PYTHONDONTWRITEBYTECODE=1
+export LESS=FRSX
 
-    _powerline_tmux_setenv() {
-      if [[ -n "$TMUX" ]]; then
-        tmux setenv TMUX_"$1"_$(tmux display -p "#D" | tr -d %) "$2"
-      fi
-    }
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/
+#export PATH=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/
+export PATH=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin:$PATH
 
-    _powerline_tmux_set_columns() {
-      _powerline_tmux_setenv COLUMNS "$COLUMNS"
-    }
-
-    # set up command prompt
-    __prompt_command()
-    {
-        _powerline_tmux_setenv PWD "$PWD"
-
-        if [[ -h ".ve" && -d ".ve" ]]; then
-            VE_DIR="`readlink .ve 2>/dev/null`"
-            VE_NAME="`basename $VE_DIR 2>/dev/null`"
-            if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
-                workon $VE_NAME
-            fi
-        fi
-
-        # Provide feedback if we are not currently working within the selected VIRTUAL_ENV
-        if [[ "$VIRTUAL_ENV" != "" ]]; then
-            PROJECT_DIR="`cat $VIRTUAL_ENV/.project 2> /dev/null`"
-            CURRENT_DIR="`pwd`"
-            if [[ "$PROJECT_DIR" != "" ]]; then
-                if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
-                  deactivate
-                  workon default 2> /dev/null
-                fi
-            fi
-        else
-            workon default 2> /dev/null
-        fi
-
-        if [ -n "$TMUX" ]; then
-            # Setup prompt title name for screen session tab naming.
-            PROMPT_TITLE='shell'
-            if [[ "$VIRTUAL_ENV" != "" && `basename $VIRTUAL_ENV` != "default" ]]; then
-                PROMPT_TITLE=`basename $VIRTUAL_ENV`
-            else
-                DIR="$PWD"
-                LASTDIR=""
-                until [[ $LASTDIR = $DIR ]]; do
-                    if [ -f "${DIR}/.git/HEAD" ]; then
-                        PROMPT_TITLE=$(basename "$DIR")
-                        break
-                    fi
-                    if [ -f "${DIR}/.hg/branch" ]; then
-                        PROMPT_TITLE=$(basename "$DIR")
-                        break
-                    fi
-                    LASTDIR=$DIR
-                    DIR=$(dirname "$DIR")
-                done
-            fi
-            #echo -ne "\ek$PROMPT_TITLE\e\\"
-            echo -ne '\033k'$PROMPT_TITLE'\033\\'
-        fi
-
-        AWESOME_PS1="\n$(powerline shell left --last_exit_code=$EXIT)\n$ "
-
-        PS1=$AWESOME_PS1
-    }
-
-    trap "_powerline_tmux_set_columns" SIGWINCH
-    kill -SIGWINCH "$$"
-
-    export PROMPT_COMMAND="EXIT=\$?; ${PROMPT_COMMAND:+$PROMPT_COMMAND ;} __prompt_command;  history -a"
-
-    export EDITOR=vim
-    export ARCHFLAGS="-arch x86_64"
-
-    export BASE_TERM=$TERM
-    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
-    export CLICOLOR=1
-    export LSCOLORS=ExGxFxDxCxHxHxCbCeEbEb
-    export LC_CTYPE=en_US.utf-8
-    export PATH=~/bin:/usr/local/sbin:/usr/local/bin:~/.local/bin:$PATH
-    export PATH=$PATH:/usr/local/mysql/bin
-    export IGNOREEOF=1
-    export PYTHONDONTWRITEBYTECODE=1
-    export LESS=FRSX
-
-    #export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/
-    #export PATH=/Library/Java/JavaVirtualMachines/openjdk-1.7-x86_64/Contents/Home/bin:$PATH
-    export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/
-    export PATH=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/bin:$PATH
-
-    if [ `id -u` != '0' ]; then
-        export WORKON_HOME=$HOME/.virtualenvs
-        export PROJECT_HOME=$HOME/src
-        export PIP_DOWNLOAD_CACHE=~/tmp/pip
-        export PIP_REQUIRE_VIRTUALENV=true
-        export PIP_VIRTUALENV_BASE=$WORKON_HOME
-        export PIP_RESPECT_VIRTUALENV=true
-        export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
-        export VIRTUALENV_USE_DISTRIBUTE=1
-        #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-        source /usr/local/bin/virtualenvwrapper.sh
-    fi
-
-    # Aliases
-    alias rvim="gvim --remote-silent"
-    alias emacs='echo "You are trying to learn vi... type \`vi\` instead."'
-    alias em="emacs"
-    alias ll="ls -alh"
-    alias wget="wget --no-check-certificate"
-    alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"
-    alias cuke="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t ~@slow"
-    alias cuketag="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t "
-    alias cukewip="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -p wip"
-    alias dbreset='bundle && thor import_from_prod:stale --app && rake migrate:all && RAILS_ENV=cucumber rake db:schema:load'
-    alias p="echo -n '$1' > ~/.config/pianobar/ctl"
-    alias cleardns="dscacheutil -flushcache"
-    alias startpostgres="postgres -D /usr/local/var/postgres"
-
-    alias rspec="bundle exec rspec"
-    alias rake="bundle exec rake"
-    alias ey="bundle exec ey"
-    alias thor="bundle exec thor"
-    alias rails="bundle exec rails"
-    alias http_requests='sudo ngrep -d en1 -q -W byline "^(GET|POST) .*"'
-
-    shopt -s histappend
-
-    export NODE_PATH=$NODE_PATH:/usr/local/lib/node
-    export PATH=$PATH:/usr/local/share/npm/bin
-
-    export TERM="xterm-256color"
-
-    if [ -f `brew --prefix`/etc/bash_completion ]; then
-        . `brew --prefix`/etc/bash_completion
-    fi
-
-    . ~/.bashrc.d/git-completion.bash
-    complete -C rails-complete -o default rails
-
-    continuous-make() {
-      while true; do
-        if ! make "$@" -q; then
-          make "$@"
-        fi
-        sleep 5
-      done
-    }
-
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
-    [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-    eval "$(rbenv init -)"
-
-    export QUEUE="csv_importer,pre_calculator,alarms,csv_importer_backlogged,pre_calculator_backlogged,alarms_backlogged,auto_mapper,setup,data_export,*"
-    export NODE_PATH=/usr/local/lib/node_modules
-    export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
-    export MILIEU_ENV="dev"
-
-    export VIMCLOJURE_SERVER_JAR="$HOME/lib/vimclojure/server-2.3.1.jar"
-
-    function colours() {
-      for i in {0..255} ; do
-        printf "\x1b[38;5;${i}mcolour${i}\n"
-      done
-    }
-
-    export HTML_TIDY=~/.bashrc.d/htmltidy
-
-    export RUBY_HEAP_MIN_SLOTS=1000000
-    export RUBY_HEAP_SLOTS_INCREMENT=1000000
-    export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-    export RUBY_GC_MALLOC_LIMIT=100000000
-    export RUBY_HEAP_FREE_MIN=500000
-
-    export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
-    export PYTHONPATH=$PYTHONPATH:~/.config/powerline/custompowerline
-
-    # This ensures that gpg agent can prompt us for passwords on subshell commands
-    export GPG_TTY=`tty`
-    eval `keychain --eval --inherit any id_rsa`
-
-    export PHANTOMJS_BIN=/usr/local/bin/phantomjs
-    export PATH="node_modules/.bin:$PATH"
+if [ `id -u` != '0' ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/src
+    export PIP_DOWNLOAD_CACHE=~/tmp/pip
+    export PIP_REQUIRE_VIRTUALENV=true
+    export PIP_VIRTUALENV_BASE=$WORKON_HOME
+    export PIP_RESPECT_VIRTUALENV=true
+    export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+    export VIRTUALENV_USE_DISTRIBUTE=1
+    #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 fi
 
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node
+export PATH=$PATH:/usr/local/share/npm/bin
+
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export VIMCLOJURE_SERVER_JAR="$HOME/lib/vimclojure/server-2.3.1.jar"
+
+export HTML_TIDY=~/.bashrc.d/htmltidy
+
+export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=100000000
+export RUBY_HEAP_FREE_MIN=500000
+
+export PYTHONPATH=$(brew --prefix)/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:~/.config/powerline/custompowerline
+
+# This ensures that gpg agent can prompt us for passwords on subshell commands
+export GPG_TTY=`tty`
+
+export PHANTOMJS_BIN=/usr/local/bin/phantomjs
+export PATH="node_modules/.bin:$PATH"
+
+
+launchctl limit maxfiles 100000 
+ulimit -n 10000
+export PATH=~/npm/bin:$PATH
+
 export PATH=$PATH:$HOME/.virtualenvs/default/bin:bin:~/.cabal/bin
+
+export PATH=/usr/local/mysql/bin:$PATH

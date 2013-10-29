@@ -1,3 +1,210 @@
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
+
+set -o vi
+
+# TMUX
+if which tmux 2>&1 >/dev/null; then
+  # if no session is started, start a new session
+  test -z "$TMUX" && tmux
+  #test -z "$TMUX" && (tmux attach || tmux new-session)
+
+  # when quitting tmux, try to attach
+  while test -z ${TMUX}; do
+    tmux attach || break
+  done
+fi
+
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+_powerline_tmux_setenv() {
+  if [[ -n "$TMUX" ]]; then
+    tmux setenv TMUX_"$1"_$(tmux display -p "#D" | tr -d %) "$2"
+  fi
+}
+
+_powerline_tmux_set_columns() {
+  _powerline_tmux_setenv COLUMNS "$COLUMNS"
+}
+
+# set up command prompt
+__prompt_command()
+{
+    _powerline_tmux_setenv PWD "$PWD"
+
+    if [[ -h ".ve" && -d ".ve" ]]; then
+        VE_DIR="`readlink .ve 2>/dev/null`"
+        VE_NAME="`basename $VE_DIR 2>/dev/null`"
+        if [[ ! $VIRTUAL_ENV == $VE_DIR ]]; then
+            workon $VE_NAME
+        fi
+    fi
+
+    # Provide feedback if we are not currently working within the selected VIRTUAL_ENV
+    if [[ "$VIRTUAL_ENV" != "" ]]; then
+        PROJECT_DIR="`cat $VIRTUAL_ENV/.project 2> /dev/null`"
+        CURRENT_DIR="`pwd`"
+        if [[ "$PROJECT_DIR" != "" ]]; then
+            if [[ ! $CURRENT_DIR =~ $PROJECT_DIR ]]; then
+              deactivate
+              workon default 2> /dev/null
+            fi
+        fi
+    else
+        workon default 2> /dev/null
+    fi
+
+    if [ -n "$TMUX" ]; then
+        # Setup prompt title name for screen session tab naming.
+        PROMPT_TITLE='shell'
+        if [[ "$VIRTUAL_ENV" != "" && `basename $VIRTUAL_ENV` != "default" ]]; then
+            PROMPT_TITLE=`basename $VIRTUAL_ENV`
+        else
+            DIR="$PWD"
+            LASTDIR=""
+            until [[ $LASTDIR = $DIR ]]; do
+                if [ -f "${DIR}/.git/HEAD" ]; then
+                    PROMPT_TITLE=$(basename "$DIR")
+                    break
+                fi
+                if [ -f "${DIR}/.hg/branch" ]; then
+                    PROMPT_TITLE=$(basename "$DIR")
+                    break
+                fi
+                LASTDIR=$DIR
+                DIR=$(dirname "$DIR")
+            done
+        fi
+        #echo -ne "\ek$PROMPT_TITLE\e\\"
+        echo -ne '\033k'$PROMPT_TITLE'\033\\'
+    fi
+
+    AWESOME_PS1="\n$(powerline shell left --last_exit_code=$EXIT)\n$ "
+
+    PS1=$AWESOME_PS1
+}
+
+trap "_powerline_tmux_set_columns" SIGWINCH
+kill -SIGWINCH "$$"
+
+export PROMPT_COMMAND="EXIT=\$?; ${PROMPT_COMMAND:+$PROMPT_COMMAND ;} __prompt_command;  history -a"
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Aliases
+alias rvim="gvim --remote-silent"
+alias emacs='echo "You are trying to learn vi... type \`vi\` instead."'
+alias em="emacs"
+alias ll="ls -alh"
+alias wget="wget --no-check-certificate"
+alias ric="ctags -R --exclude=.git --exclude=log --exclude=coverage * ~/.rvm/gems/\`rvm current\`"
+alias cuke="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t ~@slow"
+alias cuketag="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -t "
+alias cukewip="bundle && bundle exec rake db:schema:load RAILS_ENV=cucumber && bundle exec cucumber -p wip"
+alias dbreset='bundle && thor import_from_prod:stale --app && rake migrate:all && RAILS_ENV=cucumber rake db:schema:load'
+alias p="echo -n '$1' > ~/.config/pianobar/ctl"
+alias cleardns="dscacheutil -flushcache"
+alias startpostgres="postgres -D /usr/local/var/postgres"
+
+alias rspec="bundle exec rspec"
+alias rake="bundle exec rake"
+alias ey="bundle exec ey"
+alias thor="bundle exec thor"
+alias rails="bundle exec rails"
+alias http_requests='sudo ngrep -d en1 -q -W byline "^(GET|POST) .*"'
+
+shopt -s histappend
+
+export TERM="xterm-256color"
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+complete -C rails-complete -o default rails
+
+eval "$(hub alias -s)"
+
+continuous-make() {
+  while true; do
+    if ! make "$@" -q; then
+      make "$@"
+    fi
+    sleep 5
+  done
+}
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
+
+eval "$(rbenv init -)"
+
+export NODE_PATH=/usr/local/lib/node_modules
+export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
+
+function colours() {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
+eval `keychain --eval --inherit any id_rsa`
+
+###-begin-npm-completion-###
+#
+# npm command completion script
+#
+# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
+# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
+#
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+COMP_WORDBREAKS=${COMP_WORDBREAKS/@/}
+export COMP_WORDBREAKS
+
+if type complete &>/dev/null; then
+  _npm_completion () {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           npm completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -F _npm_completion npm
+elif type compdef &>/dev/null; then
+  _npm_completion() {
+    si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 npm completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef _npm_completion npm
+elif type compctl &>/dev/null; then
+  _npm_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _npm_completion npm
+fi
+
+
+###-end-npm-completion-###
+eval "$(grunt --completion=bash)"
