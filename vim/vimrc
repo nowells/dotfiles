@@ -182,7 +182,7 @@
             Bundle 'pangloss/vim-javascript'
             Bundle 'itspriddle/vim-jquery'
             Bundle 'maksimr/vim-jsbeautify'
-            Bundle 'marijnh/tern_for_vim'
+            "Bundle 'marijnh/tern_for_vim'
             "Bundle 'JavaScript-Indent'
             "Bundle 'digitaltoad/vim-jade'
             "Bundle 'leshill/vim-json'
@@ -194,6 +194,8 @@
 
         " Misc
             Bundle 'vim-scripts/nginx.vim'
+            Bundle 'rizzatti/funcoo.vim'
+            Bundle 'rizzatti/dash.vim'
         " Misc end
 
         " Unused (for now)
@@ -764,3 +766,22 @@
   let g:syntastic_javascript_jslint_conf = "--bitwise --browser --curly --eqeqeq --immed --jquery --latedef --newcap --noarg --node --tonew --plusplus --regexp --trailing --undef --white --nomen"
   autocmd FileType javascript setlocal smartindent expandtab shiftwidth=4 tabstop=4 softtabstop=4 colorcolumn=79
   let g:syntastic_javascript_checkers = [ 'jslint', 'jshint', 'gjslint' ]
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+  " bind K to grep word under cursor
+  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+  " bind \ (backward slash) to grep shortcut
+  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+  nnoremap \ :Ag<SPACE>
+endif

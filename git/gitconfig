@@ -5,12 +5,14 @@ signingkey = 0x6B2F3382
 
 [github]
 user = nowells
-password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
+remote = origin
 
 [push]
 default = tracking
 
 [alias]
+pr = !git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && :
+prc = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 u = remote update --prune
 co = checkout
 st = status
@@ -145,3 +147,7 @@ helper = osxkeychain
 
 [hub]
 protocol = https
+
+[url "ssh://git@github.com/"]
+pushInsteadOf = https://github.com/
+pushInsteadOf = git://github.com/
