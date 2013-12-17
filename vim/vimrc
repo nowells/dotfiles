@@ -27,6 +27,8 @@
 "     http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 "  NerdCommenter:
 "     Comment Toggle: <leader>c<space>
+"  NerdTree:
+"     Tree Toggle To Current Buffer: <leader>;
 "  Ack:
 "     Search: <leader>g
 "     http://vimbits.com/bits/153
@@ -88,6 +90,11 @@
 "     List Spell Options: <leader>ss
 "  ZenCoding:
 "     Expand Template: <c-y>,
+"  SilverSearcher:
+"     Search For Text Under Cursor: K
+"     Search With Silver Searcher: \
+"  Movement:
+"     Jump To Closing Brace: %
 
 " Vundle
     " Setting up Vundle - the vim plugin bundler
@@ -182,6 +189,8 @@
             Bundle 'pangloss/vim-javascript'
             Bundle 'itspriddle/vim-jquery'
             Bundle 'maksimr/vim-jsbeautify'
+            " Bundle 'hallison/vim-markdown'
+            Bundle 'plasticboy/vim-markdown'
             "Bundle 'marijnh/tern_for_vim'
             "Bundle 'JavaScript-Indent'
             "Bundle 'digitaltoad/vim-jade'
@@ -725,6 +734,25 @@
 
 " EasyMotion:
   let g:EasyMotion_leader_key = '<Leader>'
+
+" NerdTree:
+  function! NTFinderP()
+      "" Check if NERDTree is open
+      if exists("t:NERDTreeBufName")
+          let s:ntree = bufwinnr(t:NERDTreeBufName)
+      else
+          let s:ntree = -1
+      endif
+      if (s:ntree != -1)
+          "" If NERDTree is open, close it.
+          :NERDTreeClose
+      else
+        "" Open NERDTree in the file path
+        :NERDTreeFind
+      endif
+  endfunction
+
+  nmap <silent> <leader>; :call NTFinderP()<CR>
 
 " Spelling:
   setlocal spelllang=en
