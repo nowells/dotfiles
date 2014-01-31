@@ -70,8 +70,11 @@ if [ `id -u` != '0' ]; then
     #export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 fi
 
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+export NODE_PATH=$NODE_PATH:/usr/local/lib/jsctags
 export NODE_PATH=$NODE_PATH:/usr/local/lib/node
-export PATH=$PATH:/usr/local/share/npm/bin
+export NODE_PATH=$NODE_PATH:$HOME/npm/lib/node_modules
+
 
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
@@ -105,3 +108,5 @@ export PATH=/usr/local/mysql/bin:$PATH
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+export JAVA_HOME=`/usr/libexec/java_home -v 1.7`

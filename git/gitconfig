@@ -11,8 +11,6 @@ remote = origin
 default = tracking
 
 [alias]
-pr = !git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && :
-prc = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 u = remote update --prune
 co = checkout
 st = status

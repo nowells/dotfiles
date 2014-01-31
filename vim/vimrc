@@ -189,6 +189,7 @@
             Bundle 'pangloss/vim-javascript'
             Bundle 'itspriddle/vim-jquery'
             Bundle 'maksimr/vim-jsbeautify'
+            Bundle 'kchmck/vim-coffee-script'
             " Bundle 'hallison/vim-markdown'
             Bundle 'plasticboy/vim-markdown'
             "Bundle 'marijnh/tern_for_vim'
